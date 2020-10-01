@@ -208,4 +208,10 @@ router.get('/price/:token', TRY(async (req, res) => {
     usdPrice: await getPrice(token)
   })
 }))
+
+router.get('/v', TRY(async (req, res) => {
+  res.json({
+    version: '1.0'
+  })
+}))
 module.exports = router
