@@ -4,6 +4,8 @@ const express = require('express');
 const compression = require('compression');
 const bodyParser = require('body-parser')
 
+console.log(process.env.RPC)
+
 const app = express();
 const http = require('http').createServer(app);
 
