@@ -31,7 +31,9 @@ async function processParams(params, user, req) {
   return result
 }
 
-var CACHE_RPC = {}
+var CACHE_RPC = {
+  COUNT_KEY: 0
+}
 
 router.post('/rpc', TRY(async (req, res) => {
   var body = req.body
@@ -41,11 +43,21 @@ router.post('/rpc', TRY(async (req, res) => {
   }
 
 
+  if (CACHE_RPC.COUNT_KEY >= 10000) {
+    CACHE_RPC = {
+      COUNT_KEY: 0
+    }
+  }
+
+
   var key = body.method
   if (body.method == 'eth_getBlockByNumber') {
     key += body.params[0]
   }
 
+  if (!CACHE_RPC[key]) {
+    CACHE_RPC.COUNT_KEY++;
+  }
 
   CACHE_RPC[key] = CACHE_RPC[key] || {
     time: 0,
@@ -70,12 +82,19 @@ router.post('/rpc', TRY(async (req, res) => {
   }
 }))
 
-var CACHE_CONTRACT_CALL = {}
+var CACHE_CONTRACT_CALL = {
+  COUNT_KEY: 0
+}
 
 router.post('/read/:address', TRY(async (req, res) => {
   var { address } = req.params
   var { abi, method, params, cache } = req.body
   var key = ''
+  if (CACHE_CONTRACT_CALL.COUNT_KEY >= 10000) {
+    CACHE_CONTRACT_CALL = {
+      COUNT_KEY: 0
+    }
+  }
   try {
     if (cache && address && method) {
       key = `${address}>${method}>${params ? JSON.stringify(params) : 'noparam' }`
@@ -86,6 +105,9 @@ router.post('/read/:address', TRY(async (req, res) => {
   }
 
   if (key) {
+    if (!CACHE_CONTRACT_CALL[key]) {
+      CACHE_CONTRACT_CALL.COUNT_KEY++;
+    }
     CACHE_CONTRACT_CALL[key] = CACHE_CONTRACT_CALL[key] || {
       time: 0,
       old: 15 * 1000,
