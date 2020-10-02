@@ -11,7 +11,7 @@ const TRY = fn => async (req, res) => {
     await fn(req, res)
   }
   catch (ex) {
-    // console.error('LUASWAP ERROR', ex)
+    console.error('LUASWAP ERROR', ex)
     res
       .status(406)
       .send(ex.toString())
@@ -43,11 +43,11 @@ router.post('/rpc', TRY(async (req, res) => {
   }
 
 
-  // if (CACHE_RPC.COUNT_KEY >= 10000) {
-  //   CACHE_RPC = {
-  //     COUNT_KEY: 0
-  //   }
-  // }
+  if (CACHE_RPC.COUNT_KEY >= 50000) {
+    CACHE_RPC = {
+      COUNT_KEY: 0
+    }
+  }
 
 
   var key = body.method
@@ -90,11 +90,11 @@ router.post('/read/:address', TRY(async (req, res) => {
   var { address } = req.params
   var { abi, method, params, cache } = req.body
   var key = ''
-  // if (CACHE_CONTRACT_CALL.COUNT_KEY >= 10000) {
-  //   CACHE_CONTRACT_CALL = {
-  //     COUNT_KEY: 0
-  //   }
-  // }
+  if (CACHE_CONTRACT_CALL.COUNT_KEY >= 50000) {
+    CACHE_CONTRACT_CALL = {
+      COUNT_KEY: 0
+    }
+  }
   try {
     if (cache && address && method) {
       key = `${address}>${method}>${params ? JSON.stringify(params) : 'noparam' }`
