@@ -17,7 +17,7 @@ async function getPrice(token) {
     price = parseFloat(data['ethereum'].usd) || 0
   }
 
-  PRICE[symbol] = {
+  PRICE[token] = {
     updatedAt: new Date().getTime(),
     value: price
   };
