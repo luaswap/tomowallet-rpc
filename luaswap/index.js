@@ -278,6 +278,13 @@ router.get('/price/:token', TRY(async (req, res) => {
   })
 }))
 
+router.get('/poolActive/:pid', TRY(async (req, res) => {
+  res.json({
+    active: pools.active(req.params.pid)
+  })
+}))
+
+
 router.get('/v', TRY(async (req, res) => {
   res.json({
     version: '1.0'

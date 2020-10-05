@@ -227,6 +227,10 @@ async function getAllLPValue() {
 
 module.exports = {
   getAllLPValue,
+  active: (pid) => {
+    var e = supportedPools.find(e => e.pid == pid)
+    return !!e
+  },
   getLPValue: (pid) => {
     var e = supportedPools.find(e => e.pid == pid)
 
