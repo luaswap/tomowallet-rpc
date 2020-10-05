@@ -113,6 +113,10 @@ var supportedPools = [
 
 var CACHE = {}
 
+var sleep = (ms) => new Promise((resolve) => {
+  setTimeout(resolve, ms)
+})
+
 const getLPValue = async (
   lpContract,
   tokenContract,
@@ -130,11 +134,17 @@ const getLPValue = async (
   CACHE[pid] = CACHE[pid] || {
     time: 0,
     old: 30 * 1000,
-    value: null
+    value: null,
+    isLoading: false
+  }
+
+  if (CACHE[pid].isLoading) {
+    await sleep(10000)
   }
 
   if (CACHE[pid].time + CACHE[pid].old <= new Date().getTime() || !CACHE[pid]) {
-
+    console.log('Get pool value', pid)
+    CACHE[pid].isLoading = true
     const [
       tokenAmountWholeLP, 
       tokenDecimals, 
@@ -199,6 +209,7 @@ const getLPValue = async (
     
     CACHE[pid].time = new Date().getTime()
     CACHE[pid].value = result;
+    CACHE[pid].isLoading = false
   }
   return CACHE[pid].value
 

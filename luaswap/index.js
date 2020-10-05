@@ -18,6 +18,11 @@ const TRY = fn => async (req, res) => {
   }
 }
 
+var sleep = (ms) => new Promise((resolve) => {
+  setTimeout(resolve, ms)
+})
+
+
 async function processParams(params, user, req) {
   var result = params
   if (typeof params === 'object') {
@@ -43,7 +48,7 @@ router.post('/rpc', TRY(async (req, res) => {
   }
 
 
-  if (CACHE_RPC.COUNT_KEY >= 50000) {
+  if (CACHE_RPC.COUNT_KEY >= 10000) {
     CACHE_RPC = {
       COUNT_KEY: 0
     }
@@ -71,16 +76,23 @@ router.post('/rpc', TRY(async (req, res) => {
   CACHE_RPC[key] = CACHE_RPC[key] || {
     time: 0,
     old: 5 * 1000,
-    value: 0
+    value: 0,
+    isLoading: false
   }
 
-  if (
-    CACHE_RPC[key].time + CACHE_RPC[key].old <= new Date().getTime() ) {
+  if (CACHE_RPC[key].isLoading) {
+    await sleep(5000)
+  }
+
+  if (CACHE_RPC[key].time + CACHE_RPC[key].old <= new Date().getTime()) {
+    console.log('Call RPC', key)
+    CACHE_RPC[key].isLoading = true
     var { data } = await axios.post(RPC, body)
     if (data !== null || data !== undefined) {
       CACHE_RPC[key].time = new Date().getTime()
       CACHE_RPC[key].value = data
     }
+    CACHE_RPC[key].isLoading = false
   }
 
   if (CACHE_RPC[key].value == null || CACHE_RPC[key].value == undefined) {
@@ -106,7 +118,7 @@ router.post('/read/:address', TRY(async (req, res) => {
   var { address } = req.params
   var { abi, method, params, cache } = req.body
   var key = ''
-  if (CACHE_CONTRACT_CALL.COUNT_KEY >= 50000) {
+  if (CACHE_CONTRACT_CALL.COUNT_KEY >= 10000) {
     CACHE_CONTRACT_CALL = {
       COUNT_KEY: 0
     }
@@ -127,7 +139,12 @@ router.post('/read/:address', TRY(async (req, res) => {
     CACHE_CONTRACT_CALL[key] = CACHE_CONTRACT_CALL[key] || {
       time: 0,
       old: 15 * 1000,
-      value: null
+      value: null,
+      isLoading: false
+    }
+
+    if (CACHE_CONTRACT_CALL[key].isLoading) {
+      await sleep(5000)
     }
   }
 
@@ -136,6 +153,7 @@ router.post('/read/:address', TRY(async (req, res) => {
     CACHE_CONTRACT_CALL[key].time + CACHE_CONTRACT_CALL[key].old <= new Date().getTime() 
     || !CACHE_CONTRACT_CALL[key] 
     || CACHE_CONTRACT_CALL[key].value == null) {
+    CACHE_CONTRACT_CALL[key].isLoading = true
     params = await processParams(params, null, req)
     var data = await methods.contract(address, abi)
       .methods(method)
@@ -148,6 +166,7 @@ router.post('/read/:address', TRY(async (req, res) => {
     }
     CACHE_CONTRACT_CALL[key].time = new Date().getTime()
     CACHE_CONTRACT_CALL[key].value = data
+    CACHE_CONTRACT_CALL[key].isLoading = false
   }
 
   if (CACHE_CONTRACT_CALL[key].value == null || CACHE_CONTRACT_CALL[key].value == undefined) {
@@ -164,14 +183,20 @@ router.post('/read/:address', TRY(async (req, res) => {
 var CACHE_BLOCK_NUMBER = {
   time: 0,
   old: 5 * 1000,
-  value: 0
+  value: 0,
+  isLoading: false
 }
 
 router.get('/blockNumber', TRY(async (req, res) => {
+  if (CACHE_BLOCK_NUMBER.isLoading) {
+    await sleep(3000)
+  }
   if (CACHE_BLOCK_NUMBER.time + CACHE_BLOCK_NUMBER.old <= new Date().getTime()) {
+    CACHE_BLOCK_NUMBER.isLoading = true
     var data = await methods.block(-1, true)
     CACHE_BLOCK_NUMBER.time = new Date().getTime()
     CACHE_BLOCK_NUMBER.value = data;
+    CACHE_BLOCK_NUMBER.isLoading = false
     res.json(CACHE_BLOCK_NUMBER.value)
   }
   else {

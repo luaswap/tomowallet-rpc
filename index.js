@@ -22,6 +22,11 @@ app.use(function(req, res, next) {
   next()
 })
 
+router.use((req, res, next) => {
+  console.log(req.url)
+  next()
+})
+
 app.use(require('./luaswap'))
 
 http.listen(process.env.PORT || 8020, async (err) => {
