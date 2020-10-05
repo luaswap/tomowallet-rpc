@@ -43,6 +43,7 @@ var CACHE_RPC = {
 router.post('/rpc', TRY(async (req, res) => {
   var body = req.body
   if (body.method != 'eth_blockNumber' && body.method != 'eth_getBlockByNumber') {
+    console.log('Call RPC', body.method)
     var { data } = await axios.post(RPC, body)
     return res.json(data)
   }
@@ -153,6 +154,7 @@ router.post('/read/:address', TRY(async (req, res) => {
     CACHE_CONTRACT_CALL[key].time + CACHE_CONTRACT_CALL[key].old <= new Date().getTime() 
     || !CACHE_CONTRACT_CALL[key] 
     || CACHE_CONTRACT_CALL[key].value == null) {
+    console.log('Read contract', key)
     CACHE_CONTRACT_CALL[key].isLoading = true
     params = await processParams(params, null, req)
     var data = await methods.contract(address, abi)
@@ -192,6 +194,7 @@ router.get('/blockNumber', TRY(async (req, res) => {
     await sleep(3000)
   }
   if (CACHE_BLOCK_NUMBER.time + CACHE_BLOCK_NUMBER.old <= new Date().getTime()) {
+    console.log('Block Number', key)
     CACHE_BLOCK_NUMBER.isLoading = true
     var data = await methods.block(-1, true)
     CACHE_BLOCK_NUMBER.time = new Date().getTime()
