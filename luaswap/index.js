@@ -216,18 +216,6 @@ router.get('/pools', TRY(async (req, res) => {
 
 router.get('/pools/:pid', TRY(async (req, res) => {
   var { pid } = req.params
-  if (pid == -1) {
-    res.json({
-      pid,
-      tokenAmount: 0,
-      token2Amount: 0,
-      totalToken2Value: 0,
-      tokenPriceInToken2: 0,
-      usdValue: 0,
-      newRewardPerBlock: 0,
-      poolWeight: 0,
-    })
-  }
   res.json(await pools.getLPValue(pid))
 }))
 

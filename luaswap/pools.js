@@ -124,6 +124,20 @@ const getLPValue = async (
   pid,
 ) => {
 
+  var active = !!(supportedPools.find(e => e.pid == pid))
+  if (!active) {
+    return {
+      pid,
+      tokenAmount: 0,
+      token2Amount: 0,
+      totalToken2Value: 0,
+      tokenPriceInToken2: 0,
+      usdValue: 0,
+      newRewardPerBlock: 0,
+      poolWeight: 0,
+    }
+  }
+
   var masterChefContract = '0xb67d7a6644d9e191cac4da2b88d6817351c7ff62'
 
   var usdtAddress = '0xdac17f958d2ee523a2206206994597c13d831ec7'
