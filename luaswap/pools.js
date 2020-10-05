@@ -123,21 +123,6 @@ const getLPValue = async (
   token2Contract,
   pid,
 ) => {
-
-  var active = !!(supportedPools.find(e => e.pid == pid))
-  if (!active) {
-    return {
-      pid,
-      tokenAmount: 0,
-      token2Amount: 0,
-      totalToken2Value: 0,
-      tokenPriceInToken2: 0,
-      usdValue: 0,
-      newRewardPerBlock: 0,
-      poolWeight: 0,
-    }
-  }
-
   var masterChefContract = '0xb67d7a6644d9e191cac4da2b88d6817351c7ff62'
 
   var usdtAddress = '0xdac17f958d2ee523a2206206994597c13d831ec7'
@@ -247,13 +232,27 @@ module.exports = {
   },
   getLPValue: (pid) => {
     var e = supportedPools.find(e => e.pid == pid)
+    if (e) {
+      return getLPValue(
+        e.lpAddresses[1],
+        e.tokenAddresses[1],
+        e.token2Addresses[1],
+        e.pid,
+      )
+    }
+    else {
+      return {
+        pid,
+        tokenAmount: 0,
+        token2Amount: 0,
+        totalToken2Value: 0,
+        tokenPriceInToken2: 0,
+        usdValue: 0,
+        newRewardPerBlock: 0,
+        poolWeight: 0,
+      }
+    }
 
-    return getLPValue(
-      e.lpAddresses[1],
-      e.tokenAddresses[1],
-      e.token2Addresses[1],
-      e.pid,
-    )
   },
   pools: supportedPools,
 }
