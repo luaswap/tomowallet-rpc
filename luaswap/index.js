@@ -28,7 +28,7 @@ async function processParams(params, user, req) {
   else {
     result = [result]
   }
-  return result
+  return result || []
 }
 
 var CACHE_RPC = {
@@ -49,9 +49,18 @@ router.post('/rpc', TRY(async (req, res) => {
     }
   }
 
-
   var key = body.method
   if (body.method == 'eth_getBlockByNumber') {
+    if (!body.params[0]) {
+      return res.json({
+        "jsonrpc": "2.0",
+        "id": body.id,
+        "error": {
+            "code": -32602,
+            "message": "invalid argument 0: empty hex string"
+        }
+      })
+    }
     key += body.params[0]
   }
 
@@ -75,7 +84,14 @@ router.post('/rpc', TRY(async (req, res) => {
   }
 
   if (CACHE_RPC[key].value == null || CACHE_RPC[key].value == undefined) {
-    throw Error("Cannot get data")
+    return res.json({
+      "jsonrpc": "2.0",
+      "id": body.id,
+      "error": {
+          "code": -32602,
+          "message": "cannot get data"
+      }
+    })
   }
   else {
     res.json(CACHE_RPC[key].value)
