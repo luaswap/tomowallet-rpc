@@ -194,7 +194,7 @@ router.get('/blockNumber', TRY(async (req, res) => {
     await sleep(3000)
   }
   if (CACHE_BLOCK_NUMBER.time + CACHE_BLOCK_NUMBER.old <= new Date().getTime()) {
-    console.log('Block Number', key)
+    console.log('Block Number')
     CACHE_BLOCK_NUMBER.isLoading = true
     var data = await methods.block(-1, true)
     CACHE_BLOCK_NUMBER.time = new Date().getTime()
