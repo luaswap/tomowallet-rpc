@@ -82,7 +82,8 @@ router.post('/rpc', TRY(async (req, res) => {
   }
 
   if (CACHE_RPC[key].isLoading) {
-    await sleep(5000)
+    console.log('> [Wait] Call RPC', key)
+    await sleep(3000)
   }
 
   if (CACHE_RPC[key].time + CACHE_RPC[key].old <= new Date().getTime()) {
@@ -139,13 +140,14 @@ router.post('/read/:address', TRY(async (req, res) => {
     }
     CACHE_CONTRACT_CALL[key] = CACHE_CONTRACT_CALL[key] || {
       time: 0,
-      old: 15 * 1000,
+      old: 5 * 1000,
       value: null,
       isLoading: false
     }
 
     if (CACHE_CONTRACT_CALL[key].isLoading) {
-      await sleep(5000)
+      console.log('> [Wait] Read contract', key)
+      await sleep(3000)
     }
   }
 
@@ -191,6 +193,7 @@ var CACHE_BLOCK_NUMBER = {
 
 router.get('/blockNumber', TRY(async (req, res) => {
   if (CACHE_BLOCK_NUMBER.isLoading) {
+    console.log('> [Wait] Block Number')
     await sleep(3000)
   }
   if (CACHE_BLOCK_NUMBER.time + CACHE_BLOCK_NUMBER.old <= new Date().getTime()) {

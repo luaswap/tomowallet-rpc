@@ -139,6 +139,7 @@ const getLPValue = async (
   }
 
   if (CACHE[pid].isLoading) {
+    console.log('> Wait get pool value', pid)
     await sleep(10000)
   }
 
