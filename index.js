@@ -22,10 +22,10 @@ app.use(function(req, res, next) {
   next()
 })
 
-app.use((req, res, next) => {
-  console.log(req.url)
-  next()
-})
+// app.use((req, res, next) => {
+//   console.log(req.url)
+//   next()
+// })
 
 app.use(require('./luaswap'))
 
