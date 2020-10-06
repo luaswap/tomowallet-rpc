@@ -16,6 +16,20 @@ async function getPrice(token) {
     var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd')
     price = parseFloat(data['ethereum'].usd) || 0
   }
+  else if (token === 'SUSHI') {
+    var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=sushi&vs_currencies=usd')
+    price = parseFloat(data['sushi'].usd) || 0
+  }
+  else if (token === 'TOMO' || token === 'TOMOE') {
+    var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=tomochain&vs_currencies=usd')
+    price = parseFloat(data['tomochain'].usd) || 0
+  }
+  else if (token === 'FRONT') {
+    price = 0.3
+  }
+  else {
+    price = 0
+  }
 
   PRICE[token] = {
     updatedAt: new Date().getTime(),
