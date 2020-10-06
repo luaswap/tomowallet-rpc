@@ -115,11 +115,11 @@ var supportedPools = [
       1: '0x9ccc3e17ae1d1438bacde4d906cdc56bb6937e46',
     },
     tokenAddresses: {
-      1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba',
+      1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
     },
 
     token2Addresses: {
-      1: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+      1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba'
     },
     name: 'LUA - TOMOE',
     symbol: 'LUA-TOMOE UNI-V2 LP',
@@ -143,7 +143,7 @@ var supportedPools = [
       1: '0x5c47016e8a4a3c6a7c46a765f81dce205d00393e',
     },
     tokenAddresses: {
-      1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba',
+      1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
     },
 
     token2Addresses: {
@@ -171,7 +171,7 @@ var supportedPools = [
       1: '0xfe1ead71b27e8389d819ee0a420080d90a60132c',
     },
     tokenAddresses: {
-      1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba',
+      1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
     },
 
     token2Addresses: {
@@ -212,7 +212,7 @@ const getLPValue = async (
   var usdtAddress = '0xdac17f958d2ee523a2206206994597c13d831ec7'
   var usdcAddress = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
   var wethAddress = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
-  var tomoAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+  var tomoAddress = '0x05d3606d5c81eb9b7b18530995ec9b29da05faba'
   var sushiAddres = '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2'
   var frontAddress = '0xf8c3527cc04340b208c854e985240c02f7b7793f'
   
