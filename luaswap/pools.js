@@ -107,7 +107,91 @@ var supportedPools = [
     iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
     pairLink: 'https://uniswap.info/pair/0xf3279a15f5361285100474db389f7d78848bb8d1',
     addLiquidityLink: 'https://app.uniswap.org/#/add/0x05d3606d5c81eb9b7b18530995ec9b29da05faba/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
-  }
+  },
+
+  {
+    pid: 4,
+    lpAddresses: {
+      1: '0x9ccc3e17ae1d1438bacde4d906cdc56bb6937e46',
+    },
+    tokenAddresses: {
+      1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba',
+    },
+
+    token2Addresses: {
+      1: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+    },
+    name: 'LUA - TOMOE',
+    symbol: 'LUA-TOMOE UNI-V2 LP',
+    symbolShort: 'LUA-TOMOE',
+    description: `Deposit LUA-TOMOE UNI-V2 LP Earn LUA`,
+    tokenSymbol: 'LUA',
+    token2Symbol: 'TOMOE',
+    icon: 'https://luaswap.org/favicon.png',
+    icon2: 'https://wallet.tomochain.com/public/imgs/tomoiconwhite.png',
+    isHot: false,
+    isNew: true,
+    protocal: 'UniSwap',
+    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
+    pairLink: 'https://uniswap.info/pair/0x9ccc3e17ae1d1438bacde4d906cdc56bb6937e46',
+    addLiquidityLink: 'https://app.uniswap.org/#/add/0x05d3606d5c81eb9b7b18530995ec9b29da05faba/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
+  },
+  
+  {
+    pid: 5,
+    lpAddresses: {
+      1: '0x5c47016e8a4a3c6a7c46a765f81dce205d00393e',
+    },
+    tokenAddresses: {
+      1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba',
+    },
+
+    token2Addresses: {
+      1: '0xf8c3527cc04340b208c854e985240c02f7b7793f'
+    },
+    name: 'LUA - FRONT',
+    symbol: 'LUA-FRONT UNI-V2 LP',
+    symbolShort: 'LUA-FRONT',
+    description: `Deposit LUA-FRONT UNI-V2 LP Earn LUA`,
+    tokenSymbol: 'LUA',
+    token2Symbol: 'FRONT',
+    icon: 'https://luaswap.org/favicon.png',
+    icon2: 'https://s2.coinmarketcap.com/static/img/coins/128x128/5893.png',
+    isHot: false,
+    isNew: true,
+    protocal: 'UniSwap',
+    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
+    pairLink: 'https://uniswap.info/pair/0x5c47016e8a4a3c6a7c46a765f81dce205d00393e',
+    addLiquidityLink: 'https://app.uniswap.org/#/add/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc/0xf8c3527cc04340b208c854e985240c02f7b7793f'
+  },
+
+  {
+    pid: 6,
+    lpAddresses: {
+      1: '0xfe1ead71b27e8389d819ee0a420080d90a60132c',
+    },
+    tokenAddresses: {
+      1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba',
+    },
+
+    token2Addresses: {
+      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2'
+    },
+    name: 'LUA - SUSHI',
+    symbol: 'LUA-SUSHI UNI-V2 LP',
+    symbolShort: 'LUA-SUSHI',
+    description: `Deposit LUA-SUSHI UNI-V2 LP Earn LUA`,
+    tokenSymbol: 'LUA',
+    token2Symbol: 'SUSHI',
+    icon: 'https://luaswap.org/favicon.png',
+    icon2: 'https://s2.coinmarketcap.com/static/img/coins/128x128/6758.png',
+    isHot: false,
+    isNew: true,
+    protocal: 'UniSwap',
+    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
+    pairLink: 'https://uniswap.info/pair/0xfe1ead71b27e8389d819ee0a420080d90a60132c',
+    addLiquidityLink: 'https://app.uniswap.org/#/add/0x6b3595068778dd592e39a122f4f5a5cf09c90fe2/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
+  },
 ]
 
 
