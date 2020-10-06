@@ -212,6 +212,9 @@ const getLPValue = async (
   var usdtAddress = '0xdac17f958d2ee523a2206206994597c13d831ec7'
   var usdcAddress = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
   var wethAddress = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+  var tomoAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+  var sushiAddres = '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2'
+  var frontAddress = '0xf8c3527cc04340b208c854e985240c02f7b7793f'
   
 
   CACHE[pid] = CACHE[pid] || {
@@ -267,6 +270,18 @@ const getLPValue = async (
     } 
     else if (token2Contract.toLowerCase() == wethAddress) {
       var price = await getPrice('ETH');
+      usdValue = totalToken2Value.times(price)
+    }
+    else if (token2Contract.toLowerCase() == tomoAddress) {
+      var price = await getPrice('TOMO');
+      usdValue = totalToken2Value.times(price)
+    }
+    else if (token2Contract.toLowerCase() == frontAddress) {
+      var price = await getPrice('FRONT');
+      usdValue = totalToken2Value.times(price)
+    }
+    else if (token2Contract.toLowerCase() == sushiAddres) {
+      var price = await getPrice('SUSHI');
       usdValue = totalToken2Value.times(price)
     }
 
