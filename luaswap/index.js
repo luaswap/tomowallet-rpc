@@ -11,7 +11,7 @@ const TRY = fn => async (req, res) => {
     await fn(req, res)
   }
   catch (ex) {
-    console.error('LUASWAP ERROR', ex)
+    console.error('LUASWAP ERROR', req.url, req.body, ex)
     res
       .status(406)
       .send(ex.toString())
