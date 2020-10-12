@@ -465,7 +465,7 @@ module.exports = {
     var e = active(pid)
 
     if (e) {
-      e = supportedPools.find(v => v.pid)
+      e = supportedPools.find(v => v.pid == pid)
       return getLPValue(
         e.lpAddresses[1],
         e.tokenAddresses[1],
