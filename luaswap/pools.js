@@ -371,21 +371,21 @@ var supportedPools = [
     startAt: 1603429500,
     pid: 13,
     lpAddresses: {
-      1: '0x3041cbd36888becc7bbcbc0045e3b1f144466f5f',
+      1: '0x004375dff511095cc5a197a54140a24efef3a416',
     },
     tokenAddresses: {
       1: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
     },
 
     token2Addresses: {
-      1: '0xdac17f958d2ee523a2206206994597c13d831ec7'
+      1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
     },
-    name: 'WBTC - USDT',
-    symbol: 'WBTC-USDT UNI-V2 LP',
-    symbolShort: 'WBTC-USDT',
-    description: `Deposit LUA-USDT UNI-V2 LP Earn LUA`,
+    name: 'WBTC - USDC',
+    symbol: 'WBTC-USDC UNI-V2 LP',
+    symbolShort: 'WBTC-USDC',
+    description: `Deposit LUA-USDC UNI-V2 LP Earn LUA`,
     tokenSymbol: 'WBTC',
-    token2Symbol: 'USDT',
+    token2Symbol: 'USDC',
     icon: 'https://s2.coinmarketcap.com/static/img/coins/128x128/1.png',
     icon2: 'https://s2.coinmarketcap.com/static/img/coins/128x128/825.png',
     isHot: false,

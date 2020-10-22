@@ -48,6 +48,10 @@ async function getPrice(token) {
     var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=frontier-token&vs_currencies=usd')
     price = parseFloat(data['frontier-token'].usd) || 0
   }
+  else if (token === 'BTC' || token === 'WBTC' || token === '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599') {
+    var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
+    price = parseFloat(data['bitcoin'].usd) || 0
+  }
   else {
     price = 0
   }
