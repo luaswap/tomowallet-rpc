@@ -339,7 +339,7 @@ var supportedPools = [
   },
 
   {
-    startAt: 1603454400,
+    startAt: 1603429500,
     pid: 12,
     lpAddresses: {
       1: '0x3041cbd36888becc7bbcbc0045e3b1f144466f5f',
@@ -368,7 +368,7 @@ var supportedPools = [
   },
 
   {
-    startAt: 1603454400,
+    startAt: 1603429500,
     pid: 13,
     lpAddresses: {
       1: '0x3041cbd36888becc7bbcbc0045e3b1f144466f5f',
@@ -397,7 +397,7 @@ var supportedPools = [
   },
 
   {
-    startAt: 1603454400,
+    startAt: 1603429500,
     pid: 14,
     lpAddresses: {
       1: '0xcc76dfae500422d30c2c77be2a8764dcff3735ba',
