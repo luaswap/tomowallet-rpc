@@ -387,7 +387,7 @@ var supportedPools = [
     tokenSymbol: 'WBTC',
     token2Symbol: 'USDC',
     icon: 'https://s2.coinmarketcap.com/static/img/coins/128x128/1.png',
-    icon2: 'https://s2.coinmarketcap.com/static/img/coins/128x128/825.png',
+    icon2: 'https://s2.coinmarketcap.com/static/img/coins/128x128/3408.png',
     isHot: false,
     isNew: true,
     protocal: 'UniSwap',
