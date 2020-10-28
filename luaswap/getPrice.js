@@ -67,7 +67,7 @@ async function getPrice(token) {
     return price
   }
   catch (ex) {
-    console.error('get price error', ex.toString());
+    console.error('get price error', token, ex.toString());
     return 0
   }
 }
