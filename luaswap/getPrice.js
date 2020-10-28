@@ -6,7 +6,8 @@ async function getPrice(token) {
   try {
 
     let price = 0;
-    if (PRICE[token] && (new Date().getTime() - PRICE[token].updatedAt < 5 * 60 * 1000)) {
+    if (PRICE[token] && (new Date().getTime() - PRICE[token].updatedAt < 10 * 60 * 1000)) {
+      console.log('get price from cache')
       return PRICE[token].value || 0;
     }
   
