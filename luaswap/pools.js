@@ -1,12 +1,11 @@
 const methods = require('./methods')
 const getPrice = require('./getPrice')
 const BigNumber = require('bignumber.js')
-
-var supportedPools = [
+const supportedPools = [
   {
     pid: 3,
     lpAddresses: {
-      1: '0x25a17a5a907941aaf6d6d1c7aae9c9cc3a38680c',
+      1: '0x96258BB42779Bf300cf69c9B5bD2Ba5245CB4bc4',
     },
     tokenAddresses: {
       1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
@@ -17,7 +16,7 @@ var supportedPools = [
     name: 'LUA - USDC',
     symbol: 'LUA-USDC UNI-V2 LP',
     symbolShort: 'LUA-USDC',
-    description: `Deposit LUA-USDC UNI-V2 LP Earn 2xLUA`,
+    description: `Deposit LUA-USDC UNI-V2 LP Earn 5xLUA`,
     tokenSymbol: 'LUA',
     token2Symbol: 'USDC',
     icon: 'https://luaswap.org/favicon.png',
@@ -25,14 +24,14 @@ var supportedPools = [
     isHot: true,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://uniswap.info/pair/0x25a17a5a907941aaf6d6d1c7aae9c9cc3a38680c',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0x96258BB42779Bf300cf69c9B5bD2Ba5245CB4bc4',
+    addLiquidityLink: 'https://info.luaswap.org/pair/0x96258BB42779Bf300cf69c9B5bD2Ba5245CB4bc4c'
   },
   {
     pid: 0,
     lpAddresses: {
-      1: '0x5c89674c4ad1ccd10a29bcc9aabc303cd5f2da1d',
+      1: '0x7885e359a085372EbCF1ed6829402f149D02c600',
     },
     tokenAddresses: {
       1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba',
@@ -51,14 +50,14 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://uniswap.info/pair/0x5c89674c4ad1ccd10a29bcc9aabc303cd5f2da1d',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x05d3606d5c81eb9b7b18530995ec9b29da05faba/ETH'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0x7885e359a085372EbCF1ed6829402f149D02c600',
+    addLiquidityLink: 'https://info.luaswap.org/pair/0x7885e359a085372EbCF1ed6829402f149D02c600H'
   },
   {
     pid: 1,
     lpAddresses: {
-      1: '0xcad93baf5cc5ebfe7f8a485828f0c0ecd2d0e9b8',
+      1: '0xbFFD9FF55685A3B6940C59DCDCc69b1737363BE0',
     },
     tokenAddresses: {
       1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba',
@@ -77,14 +76,14 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://uniswap.info/pair/0xcad93baf5cc5ebfe7f8a485828f0c0ecd2d0e9b8',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x05d3606d5c81eb9b7b18530995ec9b29da05faba/0xdac17f958d2ee523a2206206994597c13d831ec7'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0xbFFD9FF55685A3B6940C59DCDCc69b1737363BE0',
+    addLiquidityLink: 'https://info.luaswap.org/pair/0xbFFD9FF55685A3B6940C59DCDCc69b1737363BE07'
   }, 
   {
     pid: 2,
     lpAddresses: {
-      1: '0xf3279a15f5361285100474db389f7d78848bb8d1',
+      1: '0xB10C1840f562f0ac914DA2bad3290833C75fdddF',
     },
     tokenAddresses: {
       1: '0x05d3606d5c81eb9b7b18530995ec9b29da05faba',
@@ -104,15 +103,16 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://uniswap.info/pair/0xf3279a15f5361285100474db389f7d78848bb8d1',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x05d3606d5c81eb9b7b18530995ec9b29da05faba/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0xB10C1840f562f0ac914DA2bad3290833C75fdddF',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0x05d3606d5c81eb9b7b18530995ec9b29da05faba/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
   },
+
 
   {
     pid: 4,
     lpAddresses: {
-      1: '0x9ccc3e17ae1d1438bacde4d906cdc56bb6937e46',
+      1: '0xE2f4cC0198150a7beA98E0a2A66fecafC30a5cD0',
     },
     tokenAddresses: {
       1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
@@ -132,15 +132,15 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://uniswap.info/pair/0x9ccc3e17ae1d1438bacde4d906cdc56bb6937e46',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x05d3606d5c81eb9b7b18530995ec9b29da05faba/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0xE2f4cC0198150a7beA98E0a2A66fecafC30a5cD0',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0x05d3606d5c81eb9b7b18530995ec9b29da05faba/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
   },
   
   {
     pid: 5,
     lpAddresses: {
-      1: '0x5c47016e8a4a3c6a7c46a765f81dce205d00393e',
+      1: '0x97e1081c5DECB27606dbcDEA9d8E615757aB11c4',
     },
     tokenAddresses: {
       1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
@@ -160,15 +160,15 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://uniswap.info/pair/0x5c47016e8a4a3c6a7c46a765f81dce205d00393e',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc/0xf8c3527cc04340b208c854e985240c02f7b7793f'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0x97e1081c5DECB27606dbcDEA9d8E615757aB11c4',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc/0xf8c3527cc04340b208c854e985240c02f7b7793f'
   },
 
   {
     pid: 6,
     lpAddresses: {
-      1: '0xfe1ead71b27e8389d819ee0a420080d90a60132c',
+      1: '0xc9a72CC23f900b381FC6355afD8ee674B1F12DF6',
     },
     tokenAddresses: {
       1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
@@ -188,16 +188,15 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://uniswap.info/pair/0xfe1ead71b27e8389d819ee0a420080d90a60132c',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x6b3595068778dd592e39a122f4f5a5cf09c90fe2/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0xc9a72CC23f900b381FC6355afD8ee674B1F12DF6',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0x6b3595068778dd592e39a122f4f5a5cf09c90fe2/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
   },
 
   {
-    startAt: 1602565208,
     pid: 7,
     lpAddresses: {
-      1: '0x694ad474ef16a8eefb5cc3119f9956aeef28c987',
+      1: '0x26Da27Cd29D75BcD925665223B4416025450d756',
     },
     tokenAddresses: {
       1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
@@ -217,16 +216,15 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://uniswap.info/pair/0x694ad474ef16a8eefb5cc3119f9956aeef28c987',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x476c5e26a75bd202a9683ffd34359c0cc15be0ff/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0x26Da27Cd29D75BcD925665223B4416025450d756',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0x476c5e26a75bd202a9683ffd34359c0cc15be0ff/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
   },
 
   {
-    startAt: 1602565208,
     pid: 8,
     lpAddresses: {
-      1: '0xf0ec5e8ea37911dec8e8e9bc940e9dba2de60706',
+      1: '0x38F9307839A8E82b071EA6Fcbef029814Ed88fcb',
     },
     tokenAddresses: {
       1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
@@ -246,16 +244,15 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://info.uniswap.org/pair/0xf0ec5e8ea37911dec8e8e9bc940e9dba2de60706',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x50d1c9771902476076ecfc8b2a83ad6b9355a4c9/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0x38F9307839A8E82b071EA6Fcbef029814Ed88fcb',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0x50d1c9771902476076ecfc8b2a83ad6b9355a4c9/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
   },
 
   {
-    startAt: 1602565208,
     pid: 9,
     lpAddresses: {
-      1: '0xc5d3c66133a6264b0f2e712b8e10ef96efb93eb2',
+      1: '0x65FaBAF7e6c5380243E063D8559d84e589Db6438',
     },
     tokenAddresses: {
       1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
@@ -275,16 +272,15 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://info.uniswap.org/pair/0xc5d3c66133a6264b0f2e712b8e10ef96efb93eb2',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc/ETH'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0x65FaBAF7e6c5380243E063D8559d84e589Db6438',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc/ETH'
   },
 
   {
-    startAt: 1602565208,
     pid: 10,
     lpAddresses: {
-      1: '0x9af4fb969bb16038d7618df8adbdb2e7133b0f66',
+      1: '0xeAAc91B4B28b97236605B1D40178D83C273dbe80',
     },
     tokenAddresses: {
       1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
@@ -304,16 +300,15 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://info.uniswap.org/pair/0x9af4fb969bb16038d7618df8adbdb2e7133b0f66',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc/0xd9ec3ff1f8be459bb9369b4e79e9ebcf7141c093'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0xeAAc91B4B28b97236605B1D40178D83C273dbe80',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc/0xd9ec3ff1f8be459bb9369b4e79e9ebcf7141c093'
   },
 
   {
-    startAt: 1602565208,
     pid: 11,
     lpAddresses: {
-      1: '0x9ccb79d6523152aee4dc2be5822fdbafd0d63211',
+      1: '0xfa1B8F29D9505d18b22F823B82E7Da886Dfc8bdf',
     },
     tokenAddresses: {
       1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
@@ -333,16 +328,15 @@ var supportedPools = [
     isHot: false,
     isNew: false,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://info.uniswap.org/pair/0x9ccb79d6523152aee4dc2be5822fdbafd0d63211',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x2baecdf43734f22fd5c152db08e3c27233f0c7d2/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0xfa1B8F29D9505d18b22F823B82E7Da886Dfc8bdf',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0x2baecdf43734f22fd5c152db08e3c27233f0c7d2/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
   },
 
   {
-    startAt: 1603429500,
     pid: 12,
     lpAddresses: {
-      1: '0x3041cbd36888becc7bbcbc0045e3b1f144466f5f',
+      1: '0xB3558F47Fa914F7ec1dA1a6F52aB41eE63E81301',
     },
     tokenAddresses: {
       1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
@@ -354,7 +348,7 @@ var supportedPools = [
     name: 'USDC - USDT',
     symbol: 'USDC-USDT UNI-V2 LP',
     symbolShort: 'USDC-USDT',
-    description: `Deposit LUA-USDT UNI-V2 LP Earn LUA`,
+    description: `Deposit USDC-USDT UNI-V2 LP Earn LUA`,
     tokenSymbol: 'USDC',
     token2Symbol: 'USDT',
     icon: 'https://s2.coinmarketcap.com/static/img/coins/128x128/3408.png',
@@ -362,16 +356,15 @@ var supportedPools = [
     isHot: false,
     isNew: true,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://info.uniswap.org/pair/0x3041cbd36888becc7bbcbc0045e3b1f144466f5f',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48/0xdac17f958d2ee523a2206206994597c13d831ec7'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0xB3558F47Fa914F7ec1dA1a6F52aB41eE63E81301',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48/0xdac17f958d2ee523a2206206994597c13d831ec7'
   },
 
   {
-    startAt: 1603429500,
     pid: 13,
     lpAddresses: {
-      1: '0x004375dff511095cc5a197a54140a24efef3a416',
+      1: '0x66E10dEa0019dC7353D2e4106E9b84f1CFc17CBa',
     },
     tokenAddresses: {
       1: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
@@ -383,7 +376,7 @@ var supportedPools = [
     name: 'WBTC - USDC',
     symbol: 'WBTC-USDC UNI-V2 LP',
     symbolShort: 'WBTC-USDC',
-    description: `Deposit LUA-USDC UNI-V2 LP Earn LUA`,
+    description: `Deposit WBTC-USDC UNI-V2 LP Earn LUA`,
     tokenSymbol: 'WBTC',
     token2Symbol: 'USDC',
     icon: 'https://s2.coinmarketcap.com/static/img/coins/128x128/1.png',
@@ -391,16 +384,15 @@ var supportedPools = [
     isHot: false,
     isNew: true,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://info.uniswap.org/pair/0x004375dff511095cc5a197a54140a24efef3a416',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x2260fac5e5542a773aa44fbcfedf7c193bc2c599/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0x66E10dEa0019dC7353D2e4106E9b84f1CFc17CBa',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0x2260fac5e5542a773aa44fbcfedf7c193bc2c599/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
   },
 
   {
-    startAt: 1603519000,
     pid: 14,
     lpAddresses: {
-      1: '0xcc76dfae500422d30c2c77be2a8764dcff3735ba',
+      1: '0xb195325642431b6aA6CD3C646591e7825BB3F90c',
     },
     tokenAddresses: {
       1: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984',
@@ -412,17 +404,17 @@ var supportedPools = [
     name: 'UNI - LUA',
     symbol: 'UNI-LUA UNI-V2 LP',
     symbolShort: 'UNI-LUA',
-    description: `Deposit LUA-LUA UNI-V2 LP Earn LUA`,
+    description: `Deposit UNI-LUA UNI-V2 LP Earn LUA`,
     tokenSymbol: 'UNI',
     token2Symbol: 'LUA',
-    icon: 'https://s2.coinmarketcap.com/static/img/coins/128x128/3408.png',
-    icon2: 'https://s2.coinmarketcap.com/static/img/coins/128x128/825.png',
+    icon: 'https://s2.coinmarketcap.com/static/img/coins/128x128/7083.png',
+    icon2: 'https://luaswap.org/favicon.png',
     isHot: false,
     isNew: true,
     protocal: 'UniSwap',
-    iconProtocal: 'https://uniswap.info/static/media/logo_white.edb44e56.svg',
-    pairLink: 'https://info.uniswap.org/pair/0xcc76dfae500422d30c2c77be2a8764dcff3735ba',
-    addLiquidityLink: 'https://app.uniswap.org/#/add/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0xb195325642431b6aA6CD3C646591e7825BB3F90c',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
   },
 ]
 
