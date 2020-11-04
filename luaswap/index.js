@@ -214,6 +214,10 @@ router.get('/pools', TRY(async (req, res) => {
   res.json(await pools.getAllLPValue())
 }))
 
+router.get('/supportedPools', TRY(async (req, res) => {
+  res.json(pools.pools)
+}))
+
 router.get('/pools/:pid', TRY(async (req, res) => {
   var { pid } = req.params
   res.json(await pools.getLPValue(pid))
