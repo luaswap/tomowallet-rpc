@@ -28,6 +28,7 @@ async function getPrice(token) {
         price = parseFloat(data['sushi'].usd) || 0
       }
       catch (ex) {
+        console.error('get price suhsi error')
         price = 0.5
       }
     }
