@@ -23,9 +23,13 @@ async function getPrice(token) {
       price = parseFloat(data['ethereum'].usd) || 0
     }
     else if (token === 'SUSHI' || token === '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2') {
-      price = 0.63
-      // var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=sushi&vs_currencies=usd')
-      // price = parseFloat(data['sushi'].usd) || 0
+      try {
+        var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=sushi&vs_currencies=usd')
+        price = parseFloat(data['sushi'].usd) || 0
+      }
+      catch (ex) {
+        price = 0.5
+      }
     }
     else if (token === 'TOMO' || token === 'TOMOE' || token === '0x05d3606d5c81eb9b7b18530995ec9b29da05faba') {
       var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=tomochain&vs_currencies=usd')
