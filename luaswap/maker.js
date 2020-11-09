@@ -35,13 +35,17 @@ const getMakerValue = async (MakerData) => {
         methods.contract(LP).methods('decimals():(uint8)').params().call()])
 
         decimals0 = parseInt(decimals0.toString())
-        amount0 = parseInt(amount0.toString())
-        amount0 = amount0 / (10 ** decimals0)
+        //amount0 = parseFloat(amount0.toString())
+        amount0 = new BigNumber(amount0).dividedBy(new BigNumber(10).exponentiatedBy(decimals0))
+        amount0 = parseFloat(amount0.toString())
         decimals1 = parseInt(decimals1.toString())
-        amount1 = parseInt(amount1.toString())
-        amount1 = amount1 / (10 ** decimals1)
+        //amount1 = parseFloat(amount1.toString())
+        amount1 = new BigNumber(amount1).dividedBy(new BigNumber(10).exponentiatedBy(decimals1))
+        amount1 = parseFloat(amount1.toString())
         lpDecimals = parseInt(lpDecimals.toString())
-        bal = bal / (10 ** lpDecimals)
+        //bal = bal / (10 ** lpDecimals)
+        bal = new BigNumber(bal).dividedBy(new BigNumber(10).exponentiatedBy(lpDecimals))
+        bal = parseFloat(bal.toString())
 
       const lpValue = {
               lpAddresses: LP,
