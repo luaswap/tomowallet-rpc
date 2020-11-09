@@ -1,11 +1,15 @@
 const express = require('express')
 const methods = require('./methods')
 const pools = require('./pools')
+const maker = require('./maker')
 const router = express.Router()
 const axios = require('axios')
 const { default: BigNumber } = require('bignumber.js')
 const getPrice = require('./getPrice')
 const RPC = process.env.RPC
+
+var MakerData = []
+
 const TRY = fn => async (req, res) => {
   try {
     await fn(req, res)
@@ -22,6 +26,16 @@ var sleep = (ms) => new Promise((resolve) => {
   setTimeout(resolve, ms)
 })
 
+var makerIsRunning = false
+getMarket();
+async function getMarket() {
+  if (makerIsRunning) return
+  makerIsRunning = true
+  console.log('Get MakerData! ')
+  MakerData = await maker.getMakerValue(MakerData) 
+  makerIsRunning = false
+  t = setTimeout(getMarket, 3000);
+}
 
 async function processParams(params, user, req) {
   var result = params
@@ -210,6 +224,14 @@ router.get('/blockNumber', TRY(async (req, res) => {
   }
 }))
 
+
+var CACHE_MAKER = {
+  time: 0,
+  old: 5 * 1000,
+  value: 0,
+  isLoading: false
+}
+
 router.get('/pools', TRY(async (req, res) => {
   res.json(await pools.getAllLPValue())
 }))
@@ -280,6 +302,10 @@ router.get('/price/:token', TRY(async (req, res) => {
   res.json({
     usdPrice: await getPrice(token)
   })
+}))
+
+router.get('/makerData', TRY(async (req, res) => {
+  res.json(MakerData)
 }))
 
 router.get('/poolActive/:pid', TRY(async (req, res) => {
