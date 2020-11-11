@@ -51,10 +51,10 @@ const getMakerValue = async (MakerData) => {
               lpAddresses: LP,
               lpBalance: bal,
               token0Addresses: token0,
-              token0Symbol: symbol0,
+              token0Symbol: symbol0 == 'WETH'?'ETH':symbol0,
               token0Balance: amount0,
               token1Addresses: token1,
-              token1Symbol: symbol1,
+              token1Symbol: symbol1 == 'WETH'?'ETH':symbol1,
               token1Balance: amount1
         }
 
