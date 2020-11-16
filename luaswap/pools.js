@@ -416,6 +416,34 @@ const supportedPools = [
     pairLink: 'https://info.luaswap.org/pair/0xb195325642431b6aA6CD3C646591e7825BB3F90c',
     addLiquidityLink: 'https://app.luaswap.org/#/add/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
   },
+  {
+    pid: 15,
+    lpAddresses: {
+      1: '0xd6be3b9780572f0215afb3e4d15751955503cebe',
+    },
+    tokenAddresses: {
+      1: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
+    },
+
+    token2Addresses: {
+      1: '0xdac17f958d2ee523a2206206994597c13d831ec7'
+    },
+    name: 'ETH - USDT',
+    symbol: 'ETH-USDT LUA-V1 LP',
+    symbolShort: 'ETH-USDT',
+    description: `Deposit ETH-USDT LUA-V1 LP Earn LUA`,
+    tokenSymbol: 'ETH',
+    token2Symbol: 'USDT',
+    icon: 'https://s2.coinmarketcap.com/static/img/coins/128x128/1027.png',
+    icon2: 'https://s2.coinmarketcap.com/static/img/coins/128x128/825.png',
+    isHot: false,
+    isNew: true,
+    protocal: 'LuaSwap',
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink: 'https://info.luaswap.org/pair/0xd6be3b9780572f0215afb3e4d15751955503cebe',
+    addLiquidityLink: 'https://app.luaswap.org/#/add/ETH/0xdac17f958d2ee523a2206206994597c13d831ec7',
+    removeLiquidityLink: 'https://app.luaswap.org/#/remove/ETH/0xdac17f958d2ee523a2206206994597c13d831ec7'
+  },
 ]
 
 
