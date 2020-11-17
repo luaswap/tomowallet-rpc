@@ -417,7 +417,7 @@ const supportedPools = [
     addLiquidityLink: 'https://app.luaswap.org/#/add/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc'
   },
   {
-    startAt: 1605601513,
+    startAt: 16056015130,
     pid: 15,
     lpAddresses: {
       1: '0xd6be3b9780572f0215afb3e4d15751955503cebe',
