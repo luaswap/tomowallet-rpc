@@ -1,7 +1,7 @@
 const methods = require('./methods')
 const getPrice = require('./getPrice')
 const BigNumber = require('bignumber.js')
-const supportedPools = supportedPools = [
+const supportedPools = [
   {
     pid: 3,
     lpAddresses: {
