@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 // })
 
 app.use(require('./luaswap'))
-app.get('/airdop/:address', async (req, res) => {
+app.get('/airdrop/:address', async (req, res) => {
   var address = req.params.address || ''
   address = address.toLowerCase()
   if (web3.utils.isAddress(address) && AIRDROPED.indexOf(address) < 0) {
