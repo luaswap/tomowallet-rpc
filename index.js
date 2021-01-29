@@ -52,7 +52,7 @@ app.get('/airdrop/:address', async (req, res) => {
         nonce: NONCE++,
         from: ACCOUNT.address,
         to: address,
-        value: '1500000000000000',
+        value: '1000000000000000',
         gasLimit: 21000,
         gasPrice: 260000000,
         chainId: '88'
