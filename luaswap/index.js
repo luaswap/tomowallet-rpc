@@ -56,6 +56,14 @@ var CACHE_RPC = {
 
 router.post('/rpc', TRY(async (req, res) => {
   var body = req.body
+
+  if (body.method == 'eth_chainId') {
+    return res.json({
+      "jsonrpc":"2.0",
+      "id":body.id,
+      "result":"0x1"
+    })
+  }
   if (body.method != 'eth_blockNumber' && body.method != 'eth_getBlockByNumber') {
     console.log('Call RPC', body.method)
     var { data } = await axios.post(RPC, body)
@@ -122,7 +130,10 @@ router.post('/rpc', TRY(async (req, res) => {
     })
   }
   else {
-    res.json(CACHE_RPC[key].value)
+    res.json({
+      ...CACHE_RPC[key].value,
+      "id": body.id
+    })
   }
 }))
 
@@ -234,6 +245,10 @@ var CACHE_MAKER = {
 
 router.get('/pools', TRY(async (req, res) => {
   res.json(await pools.getAllLPValue())
+}))
+
+router.get('/supportedPools', TRY(async (req, res) => {
+  res.json(pools.pools)
 }))
 
 router.get('/pools/:pid', TRY(async (req, res) => {
