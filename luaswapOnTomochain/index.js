@@ -286,7 +286,7 @@ router.get('/tomochain/info', TRY(async (req, res) => {
 }))
 
 router.get('/tomochain/total-supply', TRY(async (req, res) => {
-  var v = await methods.contract('0xB1f66997A5760428D3a87D68b90BfE0aE64121cC')
+  var v = await methods.contract('0x7262fa193e9590b2e075c3c16170f3f2f32f5c74')
   .methods('totalSupply():(uint256)')
   .params()
   .call()
@@ -295,12 +295,12 @@ router.get('/tomochain/total-supply', TRY(async (req, res) => {
 }))
 
 router.get('/tomochain/circulating-supply', TRY(async (req, res) => {
-  var v = await methods.contract('0xB1f66997A5760428D3a87D68b90BfE0aE64121cC')
+  var v = await methods.contract('0x7262fa193e9590b2e075c3c16170f3f2f32f5c74')
   .methods('circulatingSupply():(uint256)')
   .params()
   .call()
 
-  var b = await methods.contract('0xB1f66997A5760428D3a87D68b90BfE0aE64121cC')
+  var b = await methods.contract('0x7262fa193e9590b2e075c3c16170f3f2f32f5c74')
   .methods('balanceOf(address):(uint256)')
   .params('0xb67d7a6644d9e191cac4da2b88d6817351c7ff62')
   .call()
