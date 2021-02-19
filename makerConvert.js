@@ -5,7 +5,8 @@ const axios = require('axios')
 const _ = require('lodash') 
 const config = require('./config.json') 
 
-var Maker = '0xe11a87506FE17F9Fb5EEcaB14E85Af27A7C10e19'
+var Maker = '0x0FCB3b6232a2AD0af2f0602Acd759D634743579f'
+var LUA  =  '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC'
 
 async function getTokenList(makerBalance) {
   var tokenList = []
@@ -27,8 +28,6 @@ async function getTokenList(makerBalance) {
 
 async function getPath(token, address) {
 
-  var LUA  =  '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC'
-
   const params = _.find(config.param, (param) => {
     return param.token === token
   }) 
@@ -43,6 +42,9 @@ async function getPrice (symbol) {
   var price = 0;
 
   if(symbol == 'USDTUSDT') {
+    return 1;
+  }
+  if(symbol == 'RAMPUSDT') {
     return 1;
   }
   if(symbol == 'TOMOEUSDT') {
@@ -72,11 +74,18 @@ async function removeLiqidity() {
       var makerBalance = data.data[i]
       console.log(makerBalance.token0Symbol,': ',makerBalance.token0Balance)
       console.log(makerBalance.token1Symbol,': ',makerBalance.token1Balance)
-      if( new BigNumber(makerBalance.token0Balance).isGreaterThan(100) || new BigNumber(makerBalance.token1Balance).isGreaterThan(100)){
+
+      var usdPrice0 = await getPrice(makerBalance.token0Symbol+'USDT')
+      var tokenValue0 = new BigNumber(makerBalance.token0Balance).multipliedBy(usdPrice0)
+
+      var usdPrice1 = await getPrice(makerBalance.token1Symbol+'USDT')
+      var tokenValue1 = new BigNumber(makerBalance.token1Balance).multipliedBy(usdPrice1)
+
+      if( new BigNumber(tokenValue0).isGreaterThan(50) || new BigNumber(tokenValue1).isGreaterThan(50)){
         var [lpDecimals] = await Promise.all([methods.contract(makerBalance.lpAddresses).methods('decimals():(uint8)').params().call()])
 
         lpDecimals = parseInt(lpDecimals.toString())
-        var lpBalance = new BigNumber(makerBalance.lpBalance).multipliedBy(10 ** lpDecimals).multipliedBy(0.99).toString()
+        var lpBalance = new BigNumber(makerBalance.lpBalance).multipliedBy(10 ** lpDecimals).multipliedBy(0.9).toFixed(0).toString()
         console.log('lpBalance: ', lpBalance)
 
         await methods.contract(Maker).methods('removeLiqidity(address,address,uint256):()')
@@ -98,43 +107,47 @@ async function convertToLua() {
 
   try {
     for (var i = 0; i < tokenList.length; i++) {
-      if( tokenList[i].token != 'LUA-V1'){ 
-        var token = tokenList[i]
+      try {
+        if( tokenList[i].token != 'LUA-V1' && tokenList[i].token != 'KAT'){ 
+          var token = tokenList[i]
 
-        var [balanceOf, decimals] = await Promise.all([
-                                    methods.contract(token.address).methods('balanceOf(address):(uint256)').params(Maker).call(),
-                                    methods.contract(token.address).methods('decimals():(uint8)').params().call()])
+          var [balanceOf, decimals] = await Promise.all([
+                                      methods.contract(token.address).methods('balanceOf(address):(uint256)').params(Maker).call(),
+                                      methods.contract(token.address).methods('decimals():(uint8)').params().call()])
 
-        decimals = parseInt(decimals.toString())
-        var balance = new BigNumber(balanceOf).dividedBy(new BigNumber(10).exponentiatedBy(decimals))
+          decimals = parseInt(decimals.toString())
+          var balance = new BigNumber(balanceOf).dividedBy(new BigNumber(10).exponentiatedBy(decimals))
 
-        console.log('\nbalanceOf ',token.token, ' = ', balance.toString())
-        var usdPrice = await getPrice(token.token+'USDT')
-        var tokenValue = new BigNumber(balance).multipliedBy(usdPrice)
-        console.log('usdPrice: ', usdPrice)
-        console.log('tokenValue: ', tokenValue.toString())
-        var path = await getPath(token.token,token.address);
+          console.log('\nbalanceOf ',token.token, ' = ', balance.toString())
+          var usdPrice = await getPrice(token.token+'USDT')
+          var tokenValue = new BigNumber(balance).multipliedBy(usdPrice)
+          console.log('usdPrice: ', usdPrice)
+          console.log('tokenValue: ', tokenValue.toString())
+          var path = await getPath(token.token,token.address);
 
-        if(new BigNumber(tokenValue).isGreaterThan(100)){
-          if( token.token == 'ETH'){
-            //Convert ETH to LUA
-            console.log('Convert ETH to LUA! ')
-            await methods.contract(Maker).methods('marketBuyLuaWithETH(address[],uint256,uint256):()')
-                                                  .params(path,
-                                                          balanceOf,
-                                                          deadLine
-                                                          ).send(process.env.PRIVATE_KEY)
-          }else {
-            //Convert token to LUA
-            console.log('Convert ',token.token,' to LUA! ')
-            console.log('path ',path)
-            await methods.contract(Maker).methods('marketBuyLuaWithToken(address[],uint256,uint256):()')
-                                                  .params(path,
-                                                          balanceOf,
-                                                          deadLine
-                                                          ).send(process.env.PRIVATE_KEY)
+          if(new BigNumber(tokenValue).isGreaterThan(50) && token.token){
+            if( token.token == 'XETH'){
+              //Convert ETH to LUA
+              console.log('Convert ETH to LUA! ')
+              await methods.contract(Maker).methods('marketBuyLuaWithETH(address[],uint256,uint256):()')
+                                                    .params(path,
+                                                            balanceOf,
+                                                            deadLine
+                                                            ).send(process.env.PRIVATE_KEY)
+            }else {
+              //Convert token to LUA
+              console.log('Convert ',token.token,' to LUA! ')
+              console.log('path ',path)
+              await methods.contract(Maker).methods('marketBuyLuaWithToken(address[],uint256,uint256):()')
+                                                    .params(path,
+                                                            balanceOf,
+                                                            deadLine
+                                                            ).send(process.env.PRIVATE_KEY)
+            }
           }
         }
+      }catch (ex) {
+        console.error('Convert token to LUA error: ', '', ex.toString());
       }
     }
   }catch (ex) {
@@ -143,8 +156,13 @@ async function convertToLua() {
 }
 
 async function main() {
-  //await removeLiqidity()
-  await convertToLua()
-  console.log('done')
+  if(process.env.MODE === 'REMOVE'){
+    await removeLiqidity()
+    console.log('Remove liqidity done!')
+  }
+  if(process.env.MODE === 'CONVERT'){  
+    await convertToLua()
+    console.log('Convert to Lua done!')
+  }
 }
 main()
