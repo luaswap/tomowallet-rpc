@@ -578,18 +578,19 @@ const supportedPools = [
 .map(e => {
   if (
     [
-      '0x96258bb42779bf300cf69c9b5bd2ba5245cb4bc4',
-      '0xe2f4cc0198150a7bea98e0a2a66fecafc30a5cd0',
-      '0xbffd9ff55685a3b6940c59dcdcc69b1737363be0',
-      '0x7885e359a085372ebcf1ed6829402f149d02c600',
-      '0x627846f6131a4631ddf6bb53bd682ccf51f623b3',
-      '0x65fabaf7e6c5380243e063d8559d84e589db6438',
-      '0xd6be3b9780572f0215afb3e4d15751955503cebe',
-      '0xb195325642431b6aa6cd3c646591e7825bb3f90c',
-      '0x38f9307839a8e82b071ea6fcbef029814ed88fcb',
-      '0xc9a72cc23f900b381fc6355afd8ee674b1f12df6',
-      '0xb3558f47fa914f7ec1da1a6f52ab41ee63e81301',
-      '0xb10c1840f562f0ac914da2bad3290833c75fdddf'
+      // '0x96258bb42779bf300cf69c9b5bd2ba5245cb4bc4',
+      // '0xe2f4cc0198150a7bea98e0a2a66fecafc30a5cd0',
+      // '0xbffd9ff55685a3b6940c59dcdcc69b1737363be0',
+      // '0x7885e359a085372ebcf1ed6829402f149d02c600',
+      // '0x627846f6131a4631ddf6bb53bd682ccf51f623b3',
+      // '0x65fabaf7e6c5380243e063d8559d84e589db6438',
+      // '0xd6be3b9780572f0215afb3e4d15751955503cebe',
+      // '0xb195325642431b6aa6cd3c646591e7825bb3f90c',
+      // '0x38f9307839a8e82b071ea6fcbef029814ed88fcb',
+      // '0xc9a72cc23f900b381fc6355afd8ee674b1f12df6',
+      // '0xb3558f47fa914f7ec1da1a6f52ab41ee63e81301',
+      // '0xb10c1840f562f0ac914da2bad3290833c75fdddf',
+      '0x810a21afe69fe356697a9824930904383930bd96'
     ]
     .indexOf(e.lpAddresses[1].toLowerCase()) >= 0)
     {
@@ -616,8 +617,7 @@ const getLPValue = async (
   token2Contract,
   pid,
 ) => {
-  var masterChefContract = '0xb67d7a6644d9e191cac4da2b88d6817351c7ff62'
-
+  var masterChefContract = '0xb0b8e9BBAd546Eb0d816a472D44f9100309885c1'
   CACHE[pid] = CACHE[pid] || {
     time: 0,
     old: 30 * 1000,
