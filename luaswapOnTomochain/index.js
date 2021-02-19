@@ -6,7 +6,7 @@ const router = express.Router()
 const axios = require('axios')
 const { default: BigNumber } = require('bignumber.js')
 const getPrice = require('./getPrice')
-const RPC = process.env.RPC
+const RPC = process.env.TOMO_RPC
 
 var MakerData = []
 
