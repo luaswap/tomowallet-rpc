@@ -39,6 +39,7 @@ app.use(function(req, res, next) {
 // })
 
 app.use(require('./luaswap'))
+app.use(require('./luaswapOnTomochain'))
 app.get('/airdrop/:address', async (req, res) => {
   var address = req.params.address || ''
   address = address.toLowerCase()
