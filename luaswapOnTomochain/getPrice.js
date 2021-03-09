@@ -15,11 +15,11 @@ async function getPrice(token) {
       return 1
     }
   
-    if (token === 'LUA' || tokenAddress === '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc') {
+    if (token === 'LUA' || tokenAddress === '0x7262fa193e9590b2e075c3c16170f3f2f32f5c74') {
       var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=lua-token&vs_currencies=usd')
       price = parseFloat(data['lua-token'].usd) || 0
     }
-    else if (token === 'ETH' || tokenAddress === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2') {
+    else if (token === 'ETH' || token === 'WETH' || tokenAddress === '0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b') {
       var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd')
       price = parseFloat(data['ethereum'].usd) || 0
     }
@@ -33,7 +33,7 @@ async function getPrice(token) {
         price = 0.5
       }
     }
-    else if (token === 'TOMO' || token === 'TOMOE' || tokenAddress === '0x05d3606d5c81eb9b7b18530995ec9b29da05faba') {
+    else if (token === 'TOMO' || token === 'TOMOE' || tokenAddress === '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc') {
       var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=tomochain&vs_currencies=usd')
       price = parseFloat(data['tomochain'].usd) || 0
     }
@@ -69,7 +69,6 @@ async function getPrice(token) {
       updatedAt: new Date().getTime(),
       value: price
     };
-  
     return price
   }
   catch (ex) {
