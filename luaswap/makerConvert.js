@@ -1,11 +1,11 @@
 require('dotenv').config()
-const methods = require('./luaswap/methods')
+const methods = require('./methods')
 const BigNumber = require('bignumber.js')
 const axios = require('axios')
 const _ = require('lodash') 
 const config = require('./config.json') 
 
-var Maker = '0x0FCB3b6232a2AD0af2f0602Acd759D634743579f'
+var Maker = '0x0fcb3b6232a2ad0af2f0602acd759d634743579f'
 var LUA  =  '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC'
 
 async function getTokenList(makerBalance) {
@@ -55,6 +55,13 @@ async function getPrice (symbol) {
     symbol = 'BTCUSDT'
   }
 
+  if(symbol == 'FRONTUSDT') {
+    return 2;
+  }
+  
+  if(symbol == 'FTX TokenUSDT') {
+    return 30;
+  }
   const URL = 'https://www.binance.com/api/v3/ticker/price?symbol='+symbol
   try {
     var  data  = await axios.get(URL)
@@ -108,7 +115,7 @@ async function convertToLua() {
   try {
     for (var i = 0; i < tokenList.length; i++) {
       try {
-        if( tokenList[i].token != 'LUA-V1' && tokenList[i].token != 'KAT'){ 
+        if( tokenList[i].token != 'LUA-V1' && tokenList[i].token != 'KAT' && tokenList[i].token != 'RAMP'){ 
           var token = tokenList[i]
 
           var [balanceOf, decimals] = await Promise.all([
