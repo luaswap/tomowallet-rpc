@@ -22,7 +22,7 @@ const supportedPools = [
     token2Symbol: 'TOMO',
     icon: 'https://luaswap.org/favicon.png',
     icon2: 'https://wallet.tomochain.com/public/imgs/tomoiconwhite.png',
-    isHot: false,
+    isHot: true,
     isNew: true,
     protocal: 'LuaSwap',
     iconProtocal: 'https://luaswap.org/favicon.png',
@@ -32,6 +32,36 @@ const supportedPools = [
       'https://app.luaswap.org/#/add/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
     removeLiquidityLink:
       'https://app.luaswap.org/#/remove/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+  },
+  {
+    pid: 1,
+    lpAddresses: {
+      1: '0x347f551eaba062167779c9c336aa681526857b81',
+    },
+    tokenAddresses: {
+      1: '0x381b31409e4d220919b2cff012ed94d70135a59e',
+    },
+    token2Addresses: {
+      1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+    },
+    name: 'TOMO - USDT',
+    symbol: 'TOMO-USDT LUA-V1 LP',
+    symbolShort: 'TOMO-USDT',
+    description: `Deposit TOMO-USDT LUA-V1 LP Earn LUA`,
+    tokenSymbol: 'TOMO',
+    token2Symbol: 'USDT',
+    icon: 'https://wallet.tomochain.com/public/imgs/tomoiconwhite.png',
+    icon2: 'https://s2.coinmarketcap.com/static/img/coins/128x128/825.png',
+    isHot: true,
+    isNew: true,
+    protocal: 'LuaSwap',
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink:
+      'https://info.luaswap.org/tomochain/pair/0x347f551eaba062167779c9c336aa681526857b81',
+    addLiquidityLink:
+      'https://app.luaswap.org/#/add/0x381b31409e4d220919b2cff012ed94d70135a59e/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+    removeLiquidityLink:
+      'https://app.luaswap.org/#/remove/0x381b31409e4d220919b2cff012ed94d70135a59e/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
   }
 ]
 .map(e => {
