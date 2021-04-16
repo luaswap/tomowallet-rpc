@@ -248,7 +248,14 @@ const supportedPools = [
 .map(e => {
   if (
     [
-      '0x810a21afe69fe356697a9824930904383930bd96'
+      '0x810a21afe69fe356697a9824930904383930bd96',
+      '0x347f551eaba062167779c9c336aa681526857b81',
+      '0x8791df121adf1ef4d4fd249da9dfb81711c3f297',
+      '0x48f623f8d7db6bc05005b8d978c3fde1b396dea6',
+      '0x75f1b142eebc21d7e118eb67cac7f062ab1fc761',
+      '0x54a12b95a207e7db77cac8b7cdfcd5e90168187d',
+      '0x08975663ac228c6d208fa32c968569e5939fb634',
+      '0x9376b2088c63715073ba89d9a179c102e506c04d'
     ]
     .indexOf(e.lpAddresses[1].toLowerCase()) >= 0)
     {
