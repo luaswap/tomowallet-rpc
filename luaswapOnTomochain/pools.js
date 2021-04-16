@@ -282,7 +282,7 @@ const getLPValue = async (
   token2Contract,
   pid,
 ) => {
-  var masterChefContract = '0xb0b8e9BBAd546Eb0d816a472D44f9100309885c1'
+  var masterChefContract = '0x5289d1a9C889b758269C3913136791b2D52d996A'
   CACHE[pid] = CACHE[pid] || {
     time: 0,
     old: 30 * 1000,
