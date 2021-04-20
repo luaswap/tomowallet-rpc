@@ -11,7 +11,7 @@ async function getPrice(token) {
       return PRICE[token].value || 0;
     }
   
-    if (token === 'USDC' || token === 'USDCT' || tokenAddress === '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48' || tokenAddress === '0xdac17f958d2ee523a2206206994597c13d831ec7') {
+    if (token === 'USDC' || token === 'USDT' || tokenAddress === '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48' || tokenAddress === '0x381b31409e4d220919b2cff012ed94d70135a59e') {
       return 1
     }
   
@@ -27,7 +27,7 @@ async function getPrice(token) {
       var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=tomochain&vs_currencies=usd')
       price = parseFloat(data['tomochain'].usd) || 0
     }
-    else if (token === 'SRM' || tokenAddress === '0xc01643aC912B6a8ffC50CF8c1390934A6142bc91') {
+    else if (token === 'SRM' || tokenAddress === '0xc01643ac912b6a8ffc50cf8c1390934a6142bc91') {
       var { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=serum&vs_currencies=usd')
       price = parseFloat(data['serum'].usd) || 0
     }
