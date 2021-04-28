@@ -582,14 +582,11 @@ const supportedPools = [
       '0xe2f4cc0198150a7bea98e0a2a66fecafc30a5cd0',
       '0xbffd9ff55685a3b6940c59dcdcc69b1737363be0',
       '0x7885e359a085372ebcf1ed6829402f149d02c600',
-      '0x627846f6131a4631ddf6bb53bd682ccf51f623b3',
       '0x65fabaf7e6c5380243e063d8559d84e589db6438',
       '0xd6be3b9780572f0215afb3e4d15751955503cebe',
-      '0xb195325642431b6aa6cd3c646591e7825bb3f90c',
+      '0x26da27cd29d75bcd925665223b4416025450d756',
       '0x38f9307839a8e82b071ea6fcbef029814ed88fcb',
-      '0xc9a72cc23f900b381fc6355afd8ee674b1f12df6',
-      '0xb3558f47fa914f7ec1da1a6f52ab41ee63e81301',
-      '0xb10c1840f562f0ac914da2bad3290833c75fdddf'
+      '0x66e10dea0019dc7353d2e4106e9b84f1cfc17cba',
     ]
     .indexOf(e.lpAddresses[1].toLowerCase()) >= 0)
     {
