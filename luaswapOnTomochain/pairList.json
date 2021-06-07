@@ -1,0 +1,107 @@
+{
+    "name": "LuaSafe Pair List",
+    "timestamp": "2020-11-26T00:00:00+00:00",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "logoURI": "https://luaswap.org/favicon.png",
+    "keywords": [
+      "nomichef",
+      "default",
+      "list"
+    ],
+    "pairs": [
+      {
+        "lpAddresses": "0x347f551eaba062167779c9c336aa681526857b81",
+        "token0Addresses": "0x381b31409e4d220919b2cff012ed94d70135a59e",
+        "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+        "name": "USDT-TOMO"
+      },
+      {
+        "lpAddresses": "0x810a21afe69fe356697a9824930904383930bd96",
+        "token0Addresses": "0x7262fa193e9590b2e075c3c16170f3f2f32f5c74",
+        "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+        "name": "LUA-TOMO"
+      },
+      {
+        "lpAddresses": "0x48f623f8d7db6bc05005b8d978c3fde1b396dea6",
+        "token0Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+        "token1Addresses": "0xc01643ac912b6a8ffc50cf8c1390934a6142bc91",
+        "name": "TOMO-SRM"
+      },
+      {
+        "lpAddresses": "0x08975663ac228c6d208fa32c968569e5939fb634",
+        "token0Addresses": "0x381b31409e4d220919b2cff012ed94d70135a59e",
+        "token1Addresses": "0x7262fa193e9590b2e075c3c16170f3f2f32f5c74",
+        "name": "USDT-LUA"
+      },
+      {
+        "lpAddresses": "0x75f1b142eebc21d7e118eb67cac7f062ab1fc761",
+        "token0Addresses": "0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b",
+        "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+        "name": "ETH-TOMO"
+      },
+      {
+        "lpAddresses": "0x9376b2088c63715073ba89d9a179c102e506c04d",
+        "token0Addresses": "0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b",
+        "token1Addresses": "0x381b31409e4d220919b2cff012ed94d70135a59e",
+        "name": "ETH-USDT"
+      },
+      {
+        "lpAddresses": "0x54a12b95a207e7db77cac8b7cdfcd5e90168187d",
+        "token0Addresses": "0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b",
+        "token1Addresses": "0x7262fa193e9590b2e075c3c16170f3f2f32f5c74",
+        "name": "ETH-LUA"
+      },
+      {
+        "lpAddresses": "0x8791df121adf1ef4d4fd249da9dfb81711c3f297",
+        "token0Addresses": "0x33fa3c0c714638f12339f85dae89c42042a2d9af",
+        "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+        "name": "FTT-TOMO"
+      },
+      {
+        "lpAddresses": "0x2777a7e98d237b9f553d11a665909e0383c0cb5d",
+        "token0Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+        "token1Addresses": "0xe1a9a5fae06696d314994a9d6915c12a63ad055d",
+        "name": "TOMO-ZPAY"
+      },
+      {
+        "lpAddresses": "0xd6a3c6e0a3e875ec0a38ac6a5d38d9a8ffae8fe8",
+        "token0Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+        "token1Addresses": "0xb2444519f4653831b097b388d985ab3fdd5d600e",
+        "name": "TOMO-TAI"
+      },
+      {
+        "lpAddresses": "0x457403ac1d10d241ad2c6cd598b2584c7990f610",
+        "token0Addresses": "0xa91895630f2dafdc4fc5c3e32846108068c67004",
+        "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+        "name": "BTC-TOMO"
+      },
+      {
+        "lpAddresses": "0x594cd690e6c22e63c690c73b90c51c1f6dc7c407",
+        "token0Addresses": "0x381b31409e4d220919b2cff012ed94d70135a59e",
+        "token1Addresses": "0xb2444519f4653831b097b388d985ab3fdd5d600e",
+        "name": "USDT-TAI"
+      },
+      {
+        "lpAddresses": "0xaa5a62e3a1a33e95ec375efe31e98f5dc8bb9b34",
+        "token0Addresses": "0x7262fa193e9590b2e075c3c16170f3f2f32f5c74",
+        "token1Addresses": "0xe1a9a5fae06696d314994a9d6915c12a63ad055d",
+        "name": "LUA-ZPAY"
+      },
+      {
+        "lpAddresses": "0x58c879c09d67292d8358376ef0e552efcfade9e0",
+        "token0Addresses": "0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b",
+        "token1Addresses": "0xc01643ac912b6a8ffc50cf8c1390934a6142bc91",
+        "name": "ETH-SRM"
+      },
+      {
+        "lpAddresses": "0xd69651aa316a406c9fbbe1e7247e6fc70a723d86",
+        "token0Addresses": "0xa7551ba0d52c763fb6f8866de63827aa593f20bc",
+        "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+        "name": "HY-TOMO"
+      }
+    ]
+  }

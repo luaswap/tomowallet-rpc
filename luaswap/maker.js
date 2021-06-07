@@ -1,5 +1,6 @@
 const methods = require('./methods')
 const BigNumber = require('bignumber.js')
+const getPrice = require('./getPrice')
 
 const getMakerValue = async (MakerData) => {
   try {
@@ -47,23 +48,26 @@ const getMakerValue = async (MakerData) => {
         bal = new BigNumber(bal).dividedBy(new BigNumber(10).exponentiatedBy(lpDecimals))
         bal = parseFloat(bal.toString())
 
-      const lpValue = {
-              lpAddresses: LP,
-              lpBalance: bal,
-              token0Addresses: token0,
-              token0Symbol: symbol0 == 'WETH'?'ETH':symbol0,
-              token0Balance: amount0,
-              token1Addresses: token1,
-              token1Symbol: symbol1 == 'WETH'?'ETH':symbol1,
-              token1Balance: amount1
-        }
+        var usdPrice0 = await getPrice(symbol0)
+        var token0Value = new BigNumber(amount0).multipliedBy(usdPrice0)
+        var usdPrice1 = await getPrice(symbol1)
+        var token1Value = new BigNumber(amount1).multipliedBy(usdPrice1)
 
-      result.push(lpValue)
-      // console.log(LP, bal.toString())
-      // console.log(token0, symbol0, amount0)
-      // console.log(token1, symbol1, amount1)
-      // console.log('done')
-      // console.log('\n')
+        if(new BigNumber(token0Value).isGreaterThan(5) 
+          || new BigNumber(token1Value).isGreaterThan(5)){
+          const lpValue = {
+                  lpAddresses: LP,
+                  lpBalance: bal,
+                  token0Addresses: token0,
+                  token0Symbol: symbol0 == 'WETH'?'ETH':symbol0,
+                  token0Balance: amount0,
+                  token1Addresses: token1,
+                  token1Symbol: symbol1 == 'WETH'?'ETH':symbol1,
+                  token1Balance: amount1
+            }
+
+          result.push(lpValue)
+        }
     }
     return result
   }catch (ex) {

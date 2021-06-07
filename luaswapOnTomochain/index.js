@@ -31,10 +31,10 @@ getMarket();
 async function getMarket() {
   if (makerIsRunning) return
   makerIsRunning = true
-  console.log('Get MakerData! ')
+  console.log('Get TomoChain MakerData! ')
   MakerData = await maker.getMakerValue(MakerData) 
   makerIsRunning = false
-  t = setTimeout(getMarket, 3000);
+  t = setTimeout(getMarket, 60 * 1000);
 }
 
 async function processParams(params, user, req) {
