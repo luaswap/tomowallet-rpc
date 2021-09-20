@@ -1,6 +1,7 @@
 const express = require('express')
 const methods = require('./methods')
 const pools = require('./pools')
+const poolsOld = require('./poolsOld')
 const maker = require('./maker')
 const router = express.Router()
 const axios = require('axios')
@@ -247,13 +248,26 @@ router.get('/tomochain/pools', TRY(async (req, res) => {
   res.json(await pools.getAllLPValue())
 }))
 
+router.get('/tomochain/old/pools', TRY(async (req, res) => {
+  res.json(await poolsOld.getAllLPValue())
+}))
+
 router.get('/tomochain/supportedPools', TRY(async (req, res) => {
   res.json(pools.pools)
+}))
+
+router.get('/tomochain/old/supportedPools', TRY(async (req, res) => {
+  res.json(poolsOld.pools)
 }))
 
 router.get('/tomochain/pools/:pid', TRY(async (req, res) => {
   var { pid } = req.params
   res.json(await pools.getLPValue(pid))
+}))
+
+router.get('/tomochain/old/pools/:pid', TRY(async (req, res) => {
+  var { pid } = req.params
+  res.json(await poolsOld.getLPValue(pid))
 }))
 
 router.get('/tomochain/info', TRY(async (req, res) => {
@@ -270,6 +284,35 @@ router.get('/tomochain/info', TRY(async (req, res) => {
       }
     ], 
     pools: pools.pools.map(e => {
+      var pv = poolValue.find(v => e.pid == v.pid)
+      return {
+        name: e.name,
+        pair: e.symbolShort,
+        pairLink: `https://luaswap.org/#/farms/${e.symbol}`,
+        poolRewards: ['LUA'],
+        apr: luaPrice * 2425000 * pv.newRewardPerBlock / pv.usdValue,
+        totalStaked: pv.usdValue,
+      }
+    })
+  }
+
+  res.json(result)
+}))
+
+router.get('/tomochain/old/info', TRY(async (req, res) => {
+  var poolValue = await poolsOld.getAllLPValue()
+  var luaPrice = await getPrice('LUA')
+  var result = {
+    provider: 'LuaSwap',
+    provider_logo: 'https://luaswap.org/favicon100x100.png',
+    provider_URL: 'https://luaswap.org/',
+    links: [
+      {
+        title: 'Twitter',
+        link: 'https://twitter.com/LuaSwap',
+      }
+    ], 
+    poolsOld: poolsOld.pools.map(e => {
       var pv = poolValue.find(v => e.pid == v.pid)
       return {
         name: e.name,
@@ -322,6 +365,12 @@ router.get('/tomochain/makerData', TRY(async (req, res) => {
 router.get('/tomochain/poolActive/:pid', TRY(async (req, res) => {
   res.json({
     active: pools.active(req.params.pid)
+  })
+}))
+
+router.get('/tomochain/old/poolActive/:pid', TRY(async (req, res) => {
+  res.json({
+    active: poolsOld.active(req.params.pid)
   })
 }))
 
