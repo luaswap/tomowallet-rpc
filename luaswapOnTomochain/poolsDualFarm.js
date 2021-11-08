@@ -1,18 +1,39 @@
 const methods = require('./methods')
 const getPrice = require('./getPrice')
 const BigNumber = require('bignumber.js')
-const supportedPools = [
+const poolList = require('./poolList.json') 
+const supportedPools = 
+// poolList.pools.map(e => {
+//                       if (
+//                         [
+//                           '0x810a21afe69fe356697a9824930904383930bd96'
+//                         ]
+//                         .indexOf(e.lpAddresses[1].toLowerCase()) >= 0)
+//                         {
+//                           e.isHot = false
+//                           e.isNew = true
+//                         } else {
+//                           e.isHot = true
+//                           e.isNew = false
+//                         }
+
+//                         return e
+//                       })
+//                       .sort((a, b) => (a.isNew ? -1 : 1) - (b.isNew ? -1 : 1))
+// console.log("supportedPools: ", supportedPools)
+
+[
   {
     pid: 0,
     lpAddresses: {
-      1: '0x810a21afe69fe356697a9824930904383930bd96',
+      88: '0x810a21afe69fe356697a9824930904383930bd96',
     },
     tokenAddresses: {
-      1: '0x7262fa193e9590b2e075c3c16170f3f2f32f5c74',
+      88: '0x7262fa193e9590b2e075c3c16170f3f2f32f5c74',
     },
 
     token2Addresses: {
-      1: '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC',
+      88: '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC',
     },
     name: 'LUA - TOMO',
     symbol: 'LUA-TOMO LUA-V1 LP',
@@ -39,7 +60,7 @@ const supportedPools = [
     [
       '0x810a21afe69fe356697a9824930904383930bd96'
     ]
-    .indexOf(e.lpAddresses[1].toLowerCase()) >= 0)
+    .indexOf(e.lpAddresses[88].toLowerCase()) >= 0)
     {
       e.isHot = false
       e.isNew = true
@@ -63,6 +84,10 @@ const getLPValue = async (
   tokenContract,
   token2Contract,
   pid,
+  pairLink,
+  tokenSymbol,
+  token2Symbol,
+  addLiquidityLink
 ) => {
   var masterChefContract = '0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD'
   CACHE[pid] = CACHE[pid] || {
@@ -71,7 +96,7 @@ const getLPValue = async (
     value: null,
     isLoading: false
   }
-
+  console.log("lpContract: ", lpContract)
   if (CACHE[pid].isLoading) {
     // console.log('> Wait get pool value', pid)
     await sleep(10000)
@@ -87,7 +112,7 @@ const getLPValue = async (
       totalSupply, 
       token2AmountWholeLP, 
       token2Decimals,
-      newRewardPerBlock
+      newRewardPerBlock,
     ] = await Promise.all([
       methods.balance(lpContract, tokenContract),
       methods.contract(tokenContract).methods('decimals():(uint256)').params().call(),
@@ -133,6 +158,10 @@ const getLPValue = async (
       token2Amount: token2Amount.toNumber(),
       totalToken2Value: totalToken2Value.toNumber(),
       tokenPriceInToken2: token2Amount.div(tokenAmount).toNumber(),
+      token: tokenSymbol,
+      quoteToken: token2Symbol,
+      addLiquidityLink: addLiquidityLink,
+      pairLink: pairLink,
       usdValue: usdValue.toNumber(),
       newRewardPerBlock: new BigNumber(newRewardPerBlock).div(10 ** 18),
       poolWeight: new BigNumber(allocPoint).div(new BigNumber(totalAllocPoint)).toNumber()
@@ -148,10 +177,14 @@ const getLPValue = async (
 
 async function getAllLPValue() {
   return Promise.all(supportedPools.filter(e => active(e.pid)).map(e => getLPValue(
-    e.lpAddresses[1],
-    e.tokenAddresses[1],
-    e.token2Addresses[1],
+    e.lpAddresses[88],
+    e.tokenAddresses[88],
+    e.token2Addresses[88],
     e.pid,
+    e.pairLink,
+    e.tokenSymbol,
+    e.token2Symbol,
+    e.addLiquidityLink
   )))
 }
 
@@ -179,10 +212,14 @@ module.exports = {
     if (e) {
       e = supportedPools.find(v => v.pid == pid)
       return getLPValue(
-        e.lpAddresses[1],
-        e.tokenAddresses[1],
-        e.token2Addresses[1],
+        e.lpAddresses[88],
+        e.tokenAddresses[88],
+        e.token2Addresses[88],
         e.pid,
+        e.pairLink,
+        e.tokenSymbol,
+        e.token2Symbol,
+        e.addLiquidityLink        
       )
     }
     else {
@@ -196,6 +233,10 @@ module.exports = {
         usdValue: 0,
         newRewardPerBlock: 0,
         poolWeight: 0,
+        token: tokenSymbol,
+        quoteToken: token2Symbol,
+        addLiquidityLink: addLiquidityLink,
+        pairLink: pairLink,        
       }
     }
 
