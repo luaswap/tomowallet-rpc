@@ -41,46 +41,46 @@ app.use(function(req, res, next) {
 app.use(require('./luaswap'))
 app.use(require('./luaswapOnTomochain'))
 app.get('/airdrop/:address', async (req, res) => {
-  var address = req.params.address || ''
-  address = address.toLowerCase()
-  if (web3.utils.isAddress(address) && AIRDROPED.indexOf(address) < 0) {
-    try {
-      console.log('Try airdrop', address)
-      if (NONCE == 0) {
-        NONCE = await web3.eth.getTransactionCount(ACCOUNT.address)
-      }
-      var tx = await web3.eth.sendTransaction({
-        nonce: NONCE++,
-        from: ACCOUNT.address,
-        to: address,
-        value: '1000000000000000',
-        gasLimit: 21000,
-        gasPrice: 260000000,
-        chainId: '88'
-      })
+  // var address = req.params.address || ''
+  // address = address.toLowerCase()
+  // if (web3.utils.isAddress(address) && AIRDROPED.indexOf(address) < 0) {
+  //   try {
+  //     console.log('Try airdrop', address)
+  //     if (NONCE == 0) {
+  //       NONCE = await web3.eth.getTransactionCount(ACCOUNT.address)
+  //     }
+  //     var tx = await web3.eth.sendTransaction({
+  //       nonce: NONCE++,
+  //       from: ACCOUNT.address,
+  //       to: address,
+  //       value: '1000000000000000',
+  //       gasLimit: 21000,
+  //       gasPrice: 260000000,
+  //       chainId: '88'
+  //     })
 
-      AIRDROPED.push(address)
-      fs.appendFileSync('./airdrop.txt', address + '\n')
+  //     AIRDROPED.push(address)
+  //     fs.appendFileSync('./airdrop.txt', address + '\n')
       
-      console.log('Airdroped to ', address, ' tx: ', tx.transactionHash)
-      res.json({
-        error: false
-      })
-    }
-    catch (ex) {
-      NONCE = await web3.eth.getTransactionCount(ACCOUNT.address)
-      console.log('Airdrop', ex)
+  //     console.log('Airdroped to ', address, ' tx: ', tx.transactionHash)
+  //     res.json({
+  //       error: false
+  //     })
+  //   }
+  //   catch (ex) {
+  //     NONCE = await web3.eth.getTransactionCount(ACCOUNT.address)
+  //     console.log('Airdrop', ex)
 
-      res.json({
-        error: true
-      })
-    }
-  }
-  else {
+  //     res.json({
+  //       error: true
+  //     })
+  //   }
+  // }
+  // else {
     res.json({
       error: true
     })
-  }
+  // }
 })
 
 http.listen(process.env.PORT || 8020, async (err) => {
