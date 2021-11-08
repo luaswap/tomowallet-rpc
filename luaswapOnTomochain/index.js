@@ -3,6 +3,7 @@ const methods = require('./methods')
 const pools = require('./pools')
 const poolsOld = require('./poolsOld')
 const poolsDualFarm = require('./poolsDualFarm')
+const updateFarmingApr = require('./farmingRewardUpdate')
 const maker = require('./maker')
 const router = express.Router()
 const axios = require('axios')
@@ -37,6 +38,17 @@ async function getMarket() {
   MakerData = await maker.getMakerValue(MakerData) 
   makerIsRunning = false
   t = setTimeout(getMarket, 60 * 1000);
+}
+
+var updateAprIsRunning = false
+updateApr();
+async function updateApr() {
+  if (updateAprIsRunning) return
+  updateAprIsRunning = true
+  console.log('update farming apr! ')
+  await updateFarmingApr.updateFarmingApr(MakerData) 
+  updateAprIsRunning = false
+  t = setTimeout(updateApr, 5 * 60 * 1000);
 }
 
 async function processParams(params, user, req) {
