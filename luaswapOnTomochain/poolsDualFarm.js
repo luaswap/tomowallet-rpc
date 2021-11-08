@@ -178,6 +178,8 @@ const getLPValue = async (
       quoteToken: supportedPool.token2Symbol,
       addLiquidityLink: addLiquidityLink,
       pairLink: pairLink,
+      lpSymbol: supportedPool.symbol,
+      lpTokenName: supportedPool.symbolShort,
       lpAddresses: supportedPool.lpAddresses,
       usdValue: usdValue.toNumber(),
       newRewardPerBlock: new BigNumber(newRewardPerBlock).div(10 ** 18),
