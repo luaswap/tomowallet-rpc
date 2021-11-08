@@ -107,9 +107,9 @@ const supportedPools =
     pairLink:
       'https://info.luaswap.org/tomochain/pair/0x88ba0bd9e1f90ccc21bdf7d33cb67fa5743da036',
     addLiquidityLink:
-      'https://app.luaswap.org/#/add/0x88ba0bd9e1f90ccc21bdf7d33cb67fa5743da036/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+      'https://app.luaswap.org/#/add/0x4eaafa85bdbe9b02930926c594f83e62b036b1be/TOMO',
     removeLiquidityLink:
-      'https://app.luaswap.org/#/remove/0x88ba0bd9e1f90ccc21bdf7d33cb67fa5743da036/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+      'https://app.luaswap.org/#/remove/0x4eaafa85bdbe9b02930926c594f83e62b036b1be/TOMO',
   }  
 ]
 .map(e => {
