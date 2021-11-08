@@ -1,0 +1,41 @@
+{
+  "name": "LuaFarm Pools List",
+  "timestamp": "2020-11-26T00:00:00+00:00",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "logoURI": "https://luaswap.org/favicon.png",
+  "keywords": [
+    "nomichef",
+    "default",
+    "list"
+  ],
+  "pools": [
+    {
+      "masterAddresses": "0x347f551eaba062167779c9c336aa681526857b81",
+      "lpAddresses": "0x347f551eaba062167779c9c336aa681526857b81",
+      "token0Addresses": "0x381b31409e4d220919b2cff012ed94d70135a59e",
+      "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+      "name": "LUA-PIXEL",
+      "multiplier": [120, 60, 30],
+      "halvingAfterBlock": 2073600,
+      "maxRewardPerBlock": 1036800,
+      "minRewardPerBlock": 1036800,
+      "isActive": true
+    },
+    {
+      "masterAddresses": "0x347f551eaba062167779c9c336aa681526857b81",
+      "lpAddresses": "0x810a21afe69fe356697a9824930904383930bd96",
+      "token0Addresses": "0x7262fa193e9590b2e075c3c16170f3f2f32f5c74",
+      "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+      "name": "tDAO-TOMO",
+      "multiplier": [300, 150, 100, 100, 50, 50],
+      "halvingAfterBlock": 1036800,
+      "maxApr": 1036800,
+      "minApr": 1036800,
+      "isActive": true
+    }
+  ]
+}

@@ -2,6 +2,7 @@ const express = require('express')
 const methods = require('./methods')
 const pools = require('./pools')
 const poolsOld = require('./poolsOld')
+const poolsDualFarm = require('./poolsDualFarm')
 const maker = require('./maker')
 const router = express.Router()
 const axios = require('axios')
@@ -252,6 +253,19 @@ router.get('/tomochain/old/pools', TRY(async (req, res) => {
   res.json(await poolsOld.getAllLPValue())
 }))
 
+router.get('/tomochain/dualfarm/pools', TRY(async (req, res) => {
+  res.json(await poolsDualFarm.getAllLPValue())
+}))
+
+router.get('/tomochain/dualfarm/supportedPools', TRY(async (req, res) => {
+  res.json(poolsDualFarm.pools)
+}))
+
+router.get('/tomochain/dualfarm/pools/:pid', TRY(async (req, res) => {
+  var { pid } = req.params
+  res.json(await poolsDualFarm.getLPValue(pid))
+}))
+
 router.get('/tomochain/supportedPools', TRY(async (req, res) => {
   res.json(pools.pools)
 }))
@@ -269,6 +283,7 @@ router.get('/tomochain/old/pools/:pid', TRY(async (req, res) => {
   var { pid } = req.params
   res.json(await poolsOld.getLPValue(pid))
 }))
+
 
 router.get('/tomochain/info', TRY(async (req, res) => {
   var poolValue = await pools.getAllLPValue()
@@ -313,6 +328,35 @@ router.get('/tomochain/old/info', TRY(async (req, res) => {
       }
     ], 
     poolsOld: poolsOld.pools.map(e => {
+      var pv = poolValue.find(v => e.pid == v.pid)
+      return {
+        name: e.name,
+        pair: e.symbolShort,
+        pairLink: `https://luaswap.org/#/farms/${e.symbol}`,
+        poolRewards: ['LUA'],
+        apr: luaPrice * 2425000 * pv.newRewardPerBlock / pv.usdValue,
+        totalStaked: pv.usdValue,
+      }
+    })
+  }
+
+  res.json(result)
+}))
+
+router.get('/tomochain/dualfarm/info', TRY(async (req, res) => {
+  var poolValue = await poolsDualFarm.getAllLPValue()
+  var luaPrice = await getPrice('LUA')
+  var result = {
+    provider: 'LuaSwap',
+    provider_logo: 'https://luaswap.org/favicon100x100.png',
+    provider_URL: 'https://luaswap.org/',
+    links: [
+      {
+        title: 'Twitter',
+        link: 'https://twitter.com/LuaSwap',
+      }
+    ], 
+    poolsDualFarm: poolsDualFarm.pools.map(e => {
       var pv = poolValue.find(v => e.pid == v.pid)
       return {
         name: e.name,
@@ -374,6 +418,11 @@ router.get('/tomochain/old/poolActive/:pid', TRY(async (req, res) => {
   })
 }))
 
+router.get('/tomochain/dualfarm/poolActive/:pid', TRY(async (req, res) => {
+  res.json({
+    active: poolsDualFarm.active(req.params.pid)
+  })
+}))
 
 router.get('/tomochain/v', TRY(async (req, res) => {
   res.json({
