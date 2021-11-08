@@ -127,6 +127,7 @@ const getLPValue = async (
       .call()
 
     var result = {
+      master: masterChefContract,
       pid,
       tokenAmount: tokenAmount.toNumber(),
       token2Amount: token2Amount.toNumber(),
@@ -186,6 +187,7 @@ module.exports = {
     }
     else {
       return {
+        master: masterChefContract,
         pid,
         tokenAmount: 0,
         token2Amount: 0,
