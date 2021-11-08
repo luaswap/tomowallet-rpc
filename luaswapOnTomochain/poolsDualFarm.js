@@ -23,7 +23,7 @@ const supportedPools =
 // console.log("supportedPools: ", supportedPools)
 
 [
-  {
+  { masterAddresses: "0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD",
     pid: 0,
     lpAddresses: {
       88: '0x810a21afe69fe356697a9824930904383930bd96',
@@ -71,9 +71,9 @@ const supportedPools =
 .map(e => {
   if (
     [
-      '0x810a21afe69fe356697a9824930904383930bd96'
+      '0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD'
     ]
-    .indexOf(e.lpAddresses[88].toLowerCase()) >= 0)
+    .indexOf(e.masterAddresses.toLowerCase()) >= 0)
     {
       e.isHot = false
       e.isNew = true
@@ -105,7 +105,7 @@ const getLPValue = async (
   symbol,
   supportedPool
 ) => {
-  var masterChefContract = '0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD'
+  var masterChefContract = supportedPool.masterAddresses
   CACHE[pid] = CACHE[pid] || {
     time: 0,
     old: 30 * 1000,
