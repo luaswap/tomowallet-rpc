@@ -23,100 +23,100 @@ const supportedPools =
 // console.log("supportedPools: ", supportedPools)
 
 [
-  { masterAddresses: "0xc8Da867F349Dcc8c188707ACfb2298A383fF274e",
+  { masterAddresses: "0xc2016E8515AC7B323c49887798e6af0E3daB6603",
     pid: 0,
     lpAddresses: {
-      88: '0x810a21afe69fe356697a9824930904383930bd96',
+      88: '0xa9a34e45af16e7477aef1764314a3d3bfa1df0fb',
     },
     tokenAddresses: {
-      88: '0x7262fa193e9590b2e075c3c16170f3f2f32f5c74',
+      88: '0x2e6bce13c31920b9b83c43b2a8a73c2edefb75f7',
     },
 
     token2Addresses: {
-      88: '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC',
-    },
-    name: 'LUA - TOMO',
-    symbol: 'LUA-TOMO LUA-V1 LP',
-    symbolShort: 'LUA-TOMO',
-    description: `Deposit LUA-TOMO LUA-V1 LP Earn LUA`,
-    tokenSymbol: {symbol: 'LUA',
-    address: {
       88: '0x7262fa193e9590b2e075c3c16170f3f2f32f5c74',
-      1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+    },
+    name: 'PIXEL - LUA',
+    symbol: 'PIXEL-LUA LUA-V1 LP',
+    symbolShort: 'PIXEL-LUA',
+    description: `Deposit PIXEL-LUA LUA-V1 LP Earn reward`,
+    tokenSymbol: {symbol: 'PIXEL',
+    address: {
+      88: '0x2e6bce13c31920b9b83c43b2a8a73c2edefb75f7',
+      1: '0x2e6bce13c31920b9b83c43b2a8a73c2edefb75f7',
     },
     decimals: 18,
     projectLink: '',},
-    token2Symbol: {symbol: 'TOMO',
+    token2Symbol: {symbol: 'LUA',
     address: {
-      88: '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC',
-      1: '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC',
+      88: '0x7262fa193e9590b2e075c3c16170f3f2f32f5c74',
+      1: '0x7262fa193e9590b2e075c3c16170f3f2f32f5c74',
     },
     decimals: 18,
     projectLink: '',},
  
-    icon: 'https://luaswap.org/favicon.png',
-    icon2: 'https://wallet.tomochain.com/public/imgs/tomoiconwhite.png',
+    icon: 'https://raw.githubusercontent.com/tomochain/luaswap-token-list/b5bcf504a826957df81af83e602973db366ed1a0/src/tokens/icons/tomochain/0x2E6bCE13C31920B9B83c43B2A8a73C2EDEfb75F7.png',
+    icon2: 'https://luaswap.org/favicon.png',
     isHot: true,
     isNew: true,
     protocal: 'LuaSwap',
     iconProtocal: 'https://luaswap.org/favicon.png',
     pairLink:
-      'https://info.luaswap.org/tomochain/pair/0x810a21afe69fe356697a9824930904383930bd96',
+      'https://info.luaswap.org/tomochain/pair/0xa9a34e45af16e7477aef1764314a3d3bfa1df0fb',
     addLiquidityLink:
-      'https://app.luaswap.org/#/add/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+      'https://app.luaswap.org/#/add/0x2e6bce13c31920b9b83c43b2a8a73c2edefb75f7/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74',
     removeLiquidityLink:
-      'https://app.luaswap.org/#/remove/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+      'https://app.luaswap.org/#/remove/0x2e6bce13c31920b9b83c43b2a8a73c2edefb75f7/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74',
   },
-  { masterAddresses: "0x4BB01b7aCA763332511eD089C7616Ac02399EF36",
+  { masterAddresses: "0x8Bcf7880d2Bae3E2705e7D90D28Bd417bd29020d",
     pid: 0,
     lpAddresses: {
-      88: '0x86114365f2c21a839edc0786fb75f1a06256ddb5',
+      88: '0x88ba0bd9e1f90ccc21bdf7d33cb67fa5743da036',
     },
     tokenAddresses: {
-      88: '0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b',
+      88: '0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
     },
 
     token2Addresses: {
-      88: '0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
+      88: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
     },
-    name: 'ETH - tDAO',
-    symbol: 'ETH - tDAO LUA-V1 LP',
-    symbolShort: 'ETH - tDAO',
-    description: `Deposit ETH - tDAO LUA-V1 LP Earn reward`,
-    tokenSymbol: {symbol: 'ETH',
-    address: {
-      88: '0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b',
-      1: '0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b',
-    },
-    decimals: 18,
-    projectLink: '',},
-    token2Symbol: {symbol: 'tDAO',
+    name: 'tDAO - TOMO',
+    symbol: 'tDAO-TOMO LUA-V1 LP',
+    symbolShort: 'tDAO-TOMO',
+    description: `Deposit tDAO-TOMO LUA-V1 LP Earn reward`,
+    tokenSymbol: {symbol: 'tDAO',
     address: {
       88: '0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
       1: '0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
     },
     decimals: 18,
     projectLink: '',},
+    token2Symbol: {symbol: 'TOMO',
+    address: {
+      88: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+      1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+    },
+    decimals: 18,
+    projectLink: '',},
  
-    icon: 'https://luaswap.org/favicon.png',
+    icon: 'https://raw.githubusercontent.com/tomochain/luaswap-token-list/b5bcf504a826957df81af83e602973db366ed1a0/src/tokens/icons/tomochain/0x4EaafA85bDBe9B02930926C594F83e62B036B1be.png',
     icon2: 'https://wallet.tomochain.com/public/imgs/tomoiconwhite.png',
     isHot: true,
     isNew: true,
     protocal: 'LuaSwap',
     iconProtocal: 'https://luaswap.org/favicon.png',
     pairLink:
-      'https://info.luaswap.org/tomochain/pair/0x86114365f2c21a839edc0786fb75f1a06256ddb5',
+      'https://info.luaswap.org/tomochain/pair/0x88ba0bd9e1f90ccc21bdf7d33cb67fa5743da036',
     addLiquidityLink:
-      'https://app.luaswap.org/#/add/0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b/0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
+      'https://app.luaswap.org/#/add/0x88ba0bd9e1f90ccc21bdf7d33cb67fa5743da036/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
     removeLiquidityLink:
-      'https://app.luaswap.org/#/remove/0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b/0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
+      'https://app.luaswap.org/#/remove/0x88ba0bd9e1f90ccc21bdf7d33cb67fa5743da036/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
   }  
 ]
 .map(e => {
   if (
     [
-      '0xc8Da867F349Dcc8c188707ACfb2298A383fF274e',
-      '0x4BB01b7aCA763332511eD089C7616Ac02399EF36'
+      '0xc2016E8515AC7B323c49887798e6af0E3daB6603',
+      '0x8Bcf7880d2Bae3E2705e7D90D28Bd417bd29020d'
     ]
     .indexOf(e.masterAddresses.toLowerCase()) >= 0)
     {

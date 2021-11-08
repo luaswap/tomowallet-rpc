@@ -14,7 +14,7 @@
   ],
   "pools": [
     { 
-      "masterAddresses": "0xc8Da867F349Dcc8c188707ACfb2298A383fF274e",
+      "masterAddresses": "0xc2016E8515AC7B323c49887798e6af0E3daB6603",
       "pid": 0,
       "lpAddresses": "0xa9a34e45af16e7477aef1764314a3d3bfa1df0fb",
       "tokenAddresses": "0x2e6bce13c31920b9b83c43b2a8a73c2edefb75f7",
@@ -32,7 +32,7 @@
       "token2Symbol": "LUA"
     },
     { 
-      "masterAddresses": "0xc8Da867F349Dcc8c188707ACfb2298A383fF274e",
+      "masterAddresses": "0x8Bcf7880d2Bae3E2705e7D90D28Bd417bd29020d",
       "pid": 0,
       "lpAddresses": "0x88ba0bd9e1f90ccc21bdf7d33cb67fa5743da036",
       "tokenAddresses": "0x4eaafa85bdbe9b02930926c594f83e62b036b1be",
