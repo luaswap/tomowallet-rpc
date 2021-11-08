@@ -23,7 +23,7 @@ const supportedPools =
 // console.log("supportedPools: ", supportedPools)
 
 [
-  { masterAddresses: "0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD",
+  {
     pid: 0,
     lpAddresses: {
       88: '0x810a21afe69fe356697a9824930904383930bd96',
@@ -71,9 +71,9 @@ const supportedPools =
 .map(e => {
   if (
     [
-      '0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD'
+      '0x810a21afe69fe356697a9824930904383930bd96'
     ]
-    .indexOf(e.masterAddresses.toLowerCase()) >= 0)
+    .indexOf(e.lpAddresses[88].toLowerCase()) >= 0)
     {
       e.isHot = false
       e.isNew = true
@@ -105,7 +105,7 @@ const getLPValue = async (
   symbol,
   supportedPool
 ) => {
-  var masterChefContract = supportedPool.masterAddresses
+  var masterChefContract = '0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD'
   CACHE[pid] = CACHE[pid] || {
     time: 0,
     old: 30 * 1000,
@@ -194,16 +194,17 @@ const getLPValue = async (
 
 async function getAllLPValue() {
   return Promise.all(supportedPools.filter(e => active(e.pid)).map(e => getLPValue(
-    e.lpAddresses,
-    e.tokenAddresses,
-    e.token2Addresses,
+    e.lpAddresses[88],
+    e.tokenAddresses[88],
+    e.token2Addresses[88],
     e.pid,
     e.pairLink,
     e.tokenSymbol,
     e.token2Symbol,
     e.addLiquidityLink,
     e.symbolShort,
-    e.symbol
+    e.symbol,
+    e
   )))
 }
 
