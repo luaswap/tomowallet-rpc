@@ -208,6 +208,7 @@ const getLPValue = async (
       .call()
 
     var result = {
+      ...supportedPool,
       master: masterChefContract,
       pid,
       tokenAmount: tokenAmount.toNumber(),
