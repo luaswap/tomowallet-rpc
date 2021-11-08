@@ -196,16 +196,17 @@ const getLPValue = async (
 
 async function getAllLPValue() {
   return Promise.all(supportedPools.filter(e => active(e.pid)).map(e => getLPValue(
-    e.lpAddresses,
-    e.tokenAddresses,
-    e.token2Addresses,
+    e.lpAddresses[88],
+    e.tokenAddresses[88],
+    e.token2Addresses[88],
     e.pid,
     e.pairLink,
     e.tokenSymbol,
     e.token2Symbol,
     e.addLiquidityLink,
     e.symbolShort,
-    e.symbol
+    e.symbol,
+    e
   )))
 }
 
