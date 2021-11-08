@@ -13,29 +13,32 @@
     "list"
   ],
   "pools": [
-    {
-      "masterAddresses": "0x347f551eaba062167779c9c336aa681526857b81",
-      "lpAddresses": "0x347f551eaba062167779c9c336aa681526857b81",
-      "token0Addresses": "0x381b31409e4d220919b2cff012ed94d70135a59e",
-      "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
-      "name": "LUA-PIXEL",
+    { 
+      "masterAddresses": "0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD",
+      "pid": 0,
+      "lpAddresses": "0x810a21afe69fe356697a9824930904383930bd96",
+      "tokenAddresses": "0x7262fa193e9590b2e075c3c16170f3f2f32f5c74",
+      "token2Addresses": "0xB1f66997A5760428D3a87D68b90BfE0aE64121cC",
       "multiplier": [120, 60, 30],
       "halvingAfterBlock": 2073600,
       "maxRewardPerBlock": 1036800,
       "minRewardPerBlock": 1036800,
-      "isActive": true
-    },
-    {
-      "masterAddresses": "0x347f551eaba062167779c9c336aa681526857b81",
-      "lpAddresses": "0x810a21afe69fe356697a9824930904383930bd96",
-      "token0Addresses": "0x7262fa193e9590b2e075c3c16170f3f2f32f5c74",
-      "token1Addresses": "0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
-      "name": "tDAO-TOMO",
-      "multiplier": [300, 150, 100, 100, 50, 50],
-      "halvingAfterBlock": 1036800,
-      "maxApr": 1036800,
-      "minApr": 1036800,
-      "isActive": true
+      "isActive": true,
+      "name": "LUA - TOMO",
+      "symbol": "LUA-TOMO LUA-V1 LP",
+      "symbolShort": "LUA-TOMO",
+      "description": "Deposit LUA-TOMO LUA-V1 LP Earn reward",
+      "tokenSymbol": "LUA",
+      "token2Symbol": "TOMO",
+      "icon": "https://luaswap.org/favicon.png",
+      "icon2": "https://wallet.tomochain.com/public/imgs/tomoiconwhite.png",
+      "isHot": true,
+      "isNew": true,
+      "protocal": "LuaSwap",
+      "iconProtocal": "https://luaswap.org/favicon.png",
+      "pairLink":"https://info.luaswap.org/tomochain/pair/0x810a21afe69fe356697a9824930904383930bd96",
+      "addLiquidityLink":"https://app.luaswap.org/#/add/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc",
+      "removeLiquidityLink":"https://app.luaswap.org/#/remove/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc"  
     }
   ]
 }
