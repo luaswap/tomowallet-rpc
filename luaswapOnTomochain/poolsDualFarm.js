@@ -23,7 +23,7 @@ const supportedPools =
 // console.log("supportedPools: ", supportedPools)
 
 [
-  {
+  { masterAddresses: "0xc8Da867F349Dcc8c188707ACfb2298A383fF274e",
     pid: 0,
     lpAddresses: {
       88: '0x810a21afe69fe356697a9824930904383930bd96',
@@ -66,14 +66,59 @@ const supportedPools =
       'https://app.luaswap.org/#/add/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
     removeLiquidityLink:
       'https://app.luaswap.org/#/remove/0x7262fa193e9590b2e075c3c16170f3f2f32f5c74/0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
-  }
+  },
+  { masterAddresses: "0x4BB01b7aCA763332511eD089C7616Ac02399EF36",
+    pid: 0,
+    lpAddresses: {
+      88: '0x86114365f2c21a839edc0786fb75f1a06256ddb5',
+    },
+    tokenAddresses: {
+      88: '0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b',
+    },
+
+    token2Addresses: {
+      88: '0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
+    },
+    name: 'ETH - tDAO',
+    symbol: 'ETH - tDAO LUA-V1 LP',
+    symbolShort: 'ETH - tDAO',
+    description: `Deposit ETH - tDAO LUA-V1 LP Earn reward`,
+    tokenSymbol: {symbol: 'ETH',
+    address: {
+      88: '0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b',
+      1: '0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b',
+    },
+    decimals: 18,
+    projectLink: '',},
+    token2Symbol: {symbol: 'tDAO',
+    address: {
+      88: '0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
+      1: '0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
+    },
+    decimals: 18,
+    projectLink: '',},
+ 
+    icon: 'https://luaswap.org/favicon.png',
+    icon2: 'https://wallet.tomochain.com/public/imgs/tomoiconwhite.png',
+    isHot: true,
+    isNew: true,
+    protocal: 'LuaSwap',
+    iconProtocal: 'https://luaswap.org/favicon.png',
+    pairLink:
+      'https://info.luaswap.org/tomochain/pair/0x86114365f2c21a839edc0786fb75f1a06256ddb5',
+    addLiquidityLink:
+      'https://app.luaswap.org/#/add/0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b/0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
+    removeLiquidityLink:
+      'https://app.luaswap.org/#/remove/0x2eaa73bd0db20c64f53febea7b5f5e5bccc7fb8b/0x4eaafa85bdbe9b02930926c594f83e62b036b1be',
+  }  
 ]
 .map(e => {
   if (
     [
-      '0xc8Da867F349Dcc8c188707ACfb2298A383fF274e'
+      '0xc8Da867F349Dcc8c188707ACfb2298A383fF274e',
+      '0x4BB01b7aCA763332511eD089C7616Ac02399EF36'
     ]
-    .indexOf(e.lpAddresses[88].toLowerCase()) >= 0)
+    .indexOf(e.masterAddresses.toLowerCase()) >= 0)
     {
       e.isHot = false
       e.isNew = true
@@ -85,7 +130,6 @@ const supportedPools =
     return e
   })
   .sort((a, b) => (a.isNew ? -1 : 1) - (b.isNew ? -1 : 1))
-
 var CACHE = {}
 
 var sleep = (ms) => new Promise((resolve) => {
@@ -98,29 +142,25 @@ const getLPValue = async (
   token2Contract,
   pid,
   pairLink,
-  tokenSymbol,
-  token2Symbol,
   addLiquidityLink,
-  symbolShort,
-  symbol,
   supportedPool
 ) => {
-  var masterChefContract = '0xc8Da867F349Dcc8c188707ACfb2298A383fF274e'
-  CACHE[pid] = CACHE[pid] || {
+  var masterChefContract = supportedPool.masterAddresses
+  CACHE[masterChefContract] = CACHE[masterChefContract] || {
     time: 0,
     old: 30 * 1000,
     value: null,
     isLoading: false
   }
 
-  if (CACHE[pid].isLoading) {
+  if (CACHE[masterChefContract].isLoading) {
     // console.log('> Wait get pool value', pid)
     await sleep(10000)
   }
 
-  if (CACHE[pid].time + CACHE[pid].old <= new Date().getTime() || !CACHE[pid]) {
+  if (CACHE[masterChefContract].time + CACHE[masterChefContract].old <= new Date().getTime() || !CACHE[masterChefContract]) {
 
-    CACHE[pid].isLoading = true
+    CACHE[masterChefContract].isLoading = true
     const [
       tokenAmountWholeLP, 
       tokenDecimals, 
@@ -186,32 +226,28 @@ const getLPValue = async (
       poolWeight: new BigNumber(allocPoint).div(new BigNumber(totalAllocPoint)).toNumber()
     }
     
-    CACHE[pid].time = new Date().getTime()
-    CACHE[pid].value = result;
-    CACHE[pid].isLoading = false
+    CACHE[masterChefContract].time = new Date().getTime()
+    CACHE[masterChefContract].value = result;
+    CACHE[masterChefContract].isLoading = false
   }
-  return CACHE[pid].value
+  return CACHE[masterChefContract].value
 
 }
 
 async function getAllLPValue() {
-  return Promise.all(supportedPools.filter(e => active(e.pid)).map(e => getLPValue(
+  return Promise.all(supportedPools.filter(e => active(e.pid, e.masterAddresses)).map(e => getLPValue(
     e.lpAddresses[88],
     e.tokenAddresses[88],
     e.token2Addresses[88],
     e.pid,
     e.pairLink,
-    e.tokenSymbol,
-    e.token2Symbol,
     e.addLiquidityLink,
-    e.symbolShort,
-    e.symbol,
     e
   )))
 }
 
-function active(pid) {
-  var e = supportedPools.find(e => e.pid == pid)
+function active(pid, master) {
+  var e = supportedPools.find(e => e.pid == pid && e.masterAddresses == master)
   if (e) {
     if (e.startAt) {
       return e.startAt < new Date().getTime() / 1000
@@ -228,28 +264,24 @@ function active(pid) {
 module.exports = {
   getAllLPValue,
   active,
-  getLPValue: (pid) => {
-    var e = active(pid)
+  getLPValue: (pid, master) => {
+    var e = active(pid, master)
 
     if (e) {
-      e = supportedPools.find(v => v.pid == pid)
+      e = supportedPools.find(e => e.pid == pid && e.masterAddresses == master)
       return getLPValue(
         e.lpAddresses[88],
         e.tokenAddresses[88],
         e.token2Addresses[88],
         e.pid,
         e.pairLink,
-        e.tokenSymbol,
-        e.token2Symbol,
         e.addLiquidityLink,
-        e.symbolShort,
-        e.symbol    ,
         e      
       )
     }
     else {
       return {
-        master: masterChefContract,
+        masterAddresses: masterChefContract,
         pid,
         tokenAmount: 0,
         token2Amount: 0,

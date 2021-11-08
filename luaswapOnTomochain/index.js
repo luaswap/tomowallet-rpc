@@ -263,7 +263,8 @@ router.get('/tomochain/dualfarm/supportedPools', TRY(async (req, res) => {
 
 router.get('/tomochain/dualfarm/pools/:pid', TRY(async (req, res) => {
   var { pid } = req.params
-  res.json(await poolsDualFarm.getLPValue(pid))
+  var { master } = req.query
+  res.json(await poolsDualFarm.getLPValue(pid, master))
 }))
 
 router.get('/tomochain/supportedPools', TRY(async (req, res) => {
