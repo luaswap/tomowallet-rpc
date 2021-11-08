@@ -71,7 +71,7 @@ const supportedPools =
 .map(e => {
   if (
     [
-      '0x810a21afe69fe356697a9824930904383930bd96'
+      '0xc8Da867F349Dcc8c188707ACfb2298A383fF274e'
     ]
     .indexOf(e.lpAddresses[88].toLowerCase()) >= 0)
     {
@@ -105,7 +105,7 @@ const getLPValue = async (
   symbol,
   supportedPool
 ) => {
-  var masterChefContract = '0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD'
+  var masterChefContract = '0xc8Da867F349Dcc8c188707ACfb2298A383fF274e'
   CACHE[pid] = CACHE[pid] || {
     time: 0,
     old: 30 * 1000,
