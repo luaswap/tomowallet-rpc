@@ -39,8 +39,21 @@ const supportedPools =
     symbol: 'LUA-TOMO LUA-V1 LP',
     symbolShort: 'LUA-TOMO',
     description: `Deposit LUA-TOMO LUA-V1 LP Earn LUA`,
-    tokenSymbol: 'LUA',
-    token2Symbol: 'TOMO',
+    tokenSymbol: {symbol: 'LUA',
+    address: {
+      88: '0x7262fa193e9590b2e075c3c16170f3f2f32f5c74',
+      1: '0xb1f66997a5760428d3a87d68b90bfe0ae64121cc',
+    },
+    decimals: 18,
+    projectLink: '',},
+    token2Symbol: {symbol: 'TOMO',
+    address: {
+      88: '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC',
+      1: '0xB1f66997A5760428D3a87D68b90BfE0aE64121cC',
+    },
+    decimals: 18,
+    projectLink: '',},
+ 
     icon: 'https://luaswap.org/favicon.png',
     icon2: 'https://wallet.tomochain.com/public/imgs/tomoiconwhite.png',
     isHot: true,
@@ -87,7 +100,10 @@ const getLPValue = async (
   pairLink,
   tokenSymbol,
   token2Symbol,
-  addLiquidityLink
+  addLiquidityLink,
+  symbolShort,
+  symbol,
+  supportedPool
 ) => {
   var masterChefContract = '0x4a81F710b4FA14BB8bFBc7058B0B919390f993dD'
   CACHE[pid] = CACHE[pid] || {
@@ -96,14 +112,14 @@ const getLPValue = async (
     value: null,
     isLoading: false
   }
-  console.log("lpContract: ", lpContract)
+
   if (CACHE[pid].isLoading) {
     // console.log('> Wait get pool value', pid)
     await sleep(10000)
   }
 
   if (CACHE[pid].time + CACHE[pid].old <= new Date().getTime() || !CACHE[pid]) {
-    console.log('Get pool value', pid)
+
     CACHE[pid].isLoading = true
     const [
       tokenAmountWholeLP, 
@@ -158,10 +174,11 @@ const getLPValue = async (
       token2Amount: token2Amount.toNumber(),
       totalToken2Value: totalToken2Value.toNumber(),
       tokenPriceInToken2: token2Amount.div(tokenAmount).toNumber(),
-      token: tokenSymbol,
-      quoteToken: token2Symbol,
+      token: supportedPool.tokenSymbol,
+      quoteToken: supportedPool.token2Symbol,
       addLiquidityLink: addLiquidityLink,
       pairLink: pairLink,
+      lpAddresses: supportedPool.lpAddresses,
       usdValue: usdValue.toNumber(),
       newRewardPerBlock: new BigNumber(newRewardPerBlock).div(10 ** 18),
       poolWeight: new BigNumber(allocPoint).div(new BigNumber(totalAllocPoint)).toNumber()
@@ -177,14 +194,16 @@ const getLPValue = async (
 
 async function getAllLPValue() {
   return Promise.all(supportedPools.filter(e => active(e.pid)).map(e => getLPValue(
-    e.lpAddresses[88],
-    e.tokenAddresses[88],
-    e.token2Addresses[88],
+    e.lpAddresses,
+    e.tokenAddresses,
+    e.token2Addresses,
     e.pid,
     e.pairLink,
     e.tokenSymbol,
     e.token2Symbol,
-    e.addLiquidityLink
+    e.addLiquidityLink,
+    e.symbolShort,
+    e.symbol
   )))
 }
 
@@ -219,7 +238,10 @@ module.exports = {
         e.pairLink,
         e.tokenSymbol,
         e.token2Symbol,
-        e.addLiquidityLink        
+        e.addLiquidityLink,
+        e.symbolShort,
+        e.symbol    ,
+        e      
       )
     }
     else {
@@ -236,7 +258,8 @@ module.exports = {
         token: tokenSymbol,
         quoteToken: token2Symbol,
         addLiquidityLink: addLiquidityLink,
-        pairLink: pairLink,        
+        pairLink: pairLink,     
+        lpAddresses: lpAddresses,   
       }
     }
 
