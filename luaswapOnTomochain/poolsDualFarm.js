@@ -169,6 +169,8 @@ const getLPValue = async (
       token2AmountWholeLP, 
       token2Decimals,
       newRewardPerBlock,
+      LUA_REWARD_PER_BLOCK,
+      NUM_OF_BLOCK_PER_YEAR,
     ] = await Promise.all([
       methods.balance(lpContract, tokenContract),
       methods.contract(tokenContract).methods('decimals():(uint256)').params().call(),
@@ -177,6 +179,8 @@ const getLPValue = async (
       methods.balance(lpContract, token2Contract),
       methods.contract(token2Contract).methods('decimals():(uint256)').params().call(),
       methods.contract(masterChefContract).methods('getNewRewardPerBlock(uint256):(uint256)').params(pid + 1).call(),
+      methods.contract(masterChefContract).methods('LUA_REWARD_PER_BLOCK():(uint256)').params().call(),
+      methods.contract(masterChefContract).methods('NUM_OF_BLOCK_PER_YEAR():(uint256)').params().call(),
     ])
     
     // Return p1 * w1 * 2
@@ -191,11 +195,14 @@ const getLPValue = async (
       .times(portionLp)
       .div(new BigNumber(10).pow(token2Decimals))
 
-    var usdValue = 0;
+    var totalUsdValue = 0;
     var totalToken2Value = totalLpToken2Value.div(new BigNumber(10).pow(token2Decimals))
 
-    var price = await getPrice(token2Contract.toLowerCase());
-    usdValue = totalToken2Value.times(price)
+    var rewardPrice = await getPrice(token2Contract.toLowerCase());
+    var luaPrice = await getPrice('0x7262fa193e9590b2e075c3c16170f3f2f32f5c74');
+    totalUsdValue = totalToken2Value.multipliedBy(rewardPrice).multipliedBy(2)
+
+    var apy = await calculateApy(luaPrice, rewardPrice, new BigNumber(newRewardPerBlock).div(10 ** 18), NUM_OF_BLOCK_PER_YEAR, totalUsdValue, new BigNumber(LUA_REWARD_PER_BLOCK).div(10 ** 18))
 
     const allocPoint = (await methods
       .contract(masterChefContract)
@@ -222,9 +229,10 @@ const getLPValue = async (
       lpSymbol: supportedPool.symbol,
       lpTokenName: supportedPool.symbolShort,
       lpAddresses: supportedPool.lpAddresses,
-      usdValue: usdValue.toNumber(),
+      usdValue: totalUsdValue.toNumber(),
       newRewardPerBlock: new BigNumber(newRewardPerBlock).div(10 ** 18),
-      poolWeight: new BigNumber(allocPoint).div(new BigNumber(totalAllocPoint)).toNumber()
+      poolWeight: new BigNumber(allocPoint).div(new BigNumber(totalAllocPoint)).toNumber(),
+      apy: apy.toFixed(2)
     }
     
     CACHE[masterChefContract].time = new Date().getTime()
@@ -245,6 +253,16 @@ async function getAllLPValue() {
     e.addLiquidityLink,
     e
   )))
+}
+
+async function calculateApy(luaPrice, rewardPrice, newReward, numOfBlockPerYear, totalValue, luaPerBlock) {
+  // var totalRewardValue = new BigNumber(numOfBlockPerYear).multipliedBy(newReward).multipliedBy(rewardPrice)
+  // var totalLuaValue = new BigNumber(numOfBlockPerYear).multipliedBy(luaPerBlock).multipliedBy(luaPrice)
+
+  var totalRewardValue = new BigNumber(numOfBlockPerYear).multipliedBy(newReward)
+  var totalLuaValue = new BigNumber(numOfBlockPerYear).multipliedBy(luaPerBlock)
+  var apy = totalRewardValue.plus(totalLuaValue).dividedBy(totalValue).multipliedBy(100)
+  return apy
 }
 
 function active(pid, master) {
