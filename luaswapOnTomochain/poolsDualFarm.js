@@ -235,8 +235,8 @@ const getLPValue = async (
       newRewardPerBlock: new BigNumber(newRewardPerBlock).div(10 ** 18),
       poolWeight: new BigNumber(allocPoint).div(new BigNumber(totalAllocPoint)).toNumber(),
       apy: apy.toFixed(2),
-      reserves0: new BigNumber(reserves[0]).div(10 ** 18),
-      reserves1: new BigNumber(reserves[1]).div(10 ** 18),
+      reserves0: new BigNumber(reserves[0]).div(new BigNumber(10).pow(tokenDecimals)),
+      reserves1: new BigNumber(reserves[1]).div(new BigNumber(10).pow(tokenDecimals)),
       totalSupply: new BigNumber(totalSupply).div(10 ** 18),
     }
     
