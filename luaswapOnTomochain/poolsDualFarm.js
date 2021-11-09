@@ -171,6 +171,7 @@ const getLPValue = async (
       newRewardPerBlock,
       LUA_REWARD_PER_BLOCK,
       NUM_OF_BLOCK_PER_YEAR,
+      reserves
     ] = await Promise.all([
       methods.balance(lpContract, tokenContract),
       methods.contract(tokenContract).methods('decimals():(uint256)').params().call(),
@@ -181,6 +182,7 @@ const getLPValue = async (
       methods.contract(masterChefContract).methods('getNewRewardPerBlock(uint256):(uint256)').params(pid + 1).call(),
       methods.contract(masterChefContract).methods('LUA_REWARD_PER_BLOCK():(uint256)').params().call(),
       methods.contract(masterChefContract).methods('NUM_OF_BLOCK_PER_YEAR():(uint256)').params().call(),
+      methods.contract(lpContract).methods('getReserves():(uint112,uint112)').params().call(),
     ])
     
     // Return p1 * w1 * 2
@@ -232,7 +234,10 @@ const getLPValue = async (
       usdValue: totalUsdValue.toNumber(),
       newRewardPerBlock: new BigNumber(newRewardPerBlock).div(10 ** 18),
       poolWeight: new BigNumber(allocPoint).div(new BigNumber(totalAllocPoint)).toNumber(),
-      apy: apy.toFixed(2)
+      apy: apy.toFixed(2),
+      reserves0: new BigNumber(reserves[0]).div(10 ** 18),
+      reserves1: new BigNumber(reserves[1]).div(10 ** 18),
+      totalSupply: new BigNumber(totalSupply).div(10 ** 18),
     }
     
     CACHE[masterChefContract].time = new Date().getTime()
