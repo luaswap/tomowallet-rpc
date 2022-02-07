@@ -262,10 +262,10 @@ async function getAllLPValue() {
 
 async function calculateApy(luaPrice, rewardPrice, newReward, numOfBlockPerYear, totalValue, luaPerBlock) {
   // var totalRewardValue = new BigNumber(numOfBlockPerYear).multipliedBy(newReward).multipliedBy(rewardPrice)
-  // var totalLuaValue = new BigNumber(numOfBlockPerYear).multipliedBy(luaPerBlock).multipliedBy(luaPrice)
+  var totalLuaValue = new BigNumber(numOfBlockPerYear).multipliedBy(luaPerBlock).multipliedBy(luaPrice)
 
   var totalRewardValue = new BigNumber(numOfBlockPerYear).multipliedBy(newReward)
-  var totalLuaValue = new BigNumber(numOfBlockPerYear).multipliedBy(luaPerBlock)
+  // var totalLuaValue = new BigNumber(numOfBlockPerYear).multipliedBy(luaPerBlock)
   var apy = totalRewardValue.plus(totalLuaValue).dividedBy(totalValue).multipliedBy(100)
   return apy
 }
